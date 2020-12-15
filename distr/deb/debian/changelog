@@ -1,0 +1,19 @@
+easypaint (0.1.1-1) stable; urgency=low
+
+  * Added Qt5 support
+  
+ -- Nikita Grishko <grin.minsk@gmail.com> Fri, 24 May 2013 23:35:00 +0300
+ 
+
+easypaint (0.1.0-1) stable; urgency=low
+
+  * First release
+
+ -- Nikita Grishko <grin.minsk@gmail.com>  Thu, 10 Apr 2012 17:19:00 +0300
+
+
+easypaint (0.0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #0001)  <nnnn is the bug number of your ITP>
+
+ -- Artem Stepanyuk <faulknercs@yandex.ru>  Sun, 01 Apr 2012 01:11:33 +0300

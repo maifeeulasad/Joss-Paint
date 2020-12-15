@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/">
+        <file>media/instruments-icons/cursor.png</file>
+        <file>media/instruments-icons/ellipse.png</file>
+        <file>media/instruments-icons/fill.png</file>
+        <file>media/instruments-icons/lastic.png</file>
+        <file>media/instruments-icons/line.png</file>
+        <file>media/instruments-icons/loupe.png</file>
+        <file>media/instruments-icons/pencil.png</file>
+        <file>media/instruments-icons/pipette.png</file>
+        <file>media/instruments-icons/palette.png</file>
+        <file>media/instruments-icons/rectangle.png</file>
+        <file>media/instruments-icons/spray.png</file>
+        <file>media/instruments-icons/text.png</file>
+        <file>media/instruments-icons/cursor_loupe.png</file>
+        <file>media/instruments-icons/cursor_pipette.png</file>
+        <file>media/instruments-icons/cursor_spray.png</file>
+        <file>media/instruments-icons/cursor_fill.png</file>
+        <file>media/textures/transparent.jpg</file>
+        <file>media/actions-icons/application-exit.png</file>
+        <file>media/actions-icons/document-new.png</file>
+        <file>media/actions-icons/document-open.png</file>
+        <file>media/actions-icons/document-print.png</file>
+        <file>media/actions-icons/document-properties.png</file>
+        <file>media/actions-icons/document-save-as.png</file>
+        <file>media/actions-icons/document-save.png</file>
+        <file>media/actions-icons/edit-copy.png</file>
+        <file>media/actions-icons/edit-cut.png</file>
+        <file>media/actions-icons/edit-paste.png</file>
+        <file>media/actions-icons/edit-redo.png</file>
+        <file>media/actions-icons/edit-undo.png</file>
+        <file>media/actions-icons/help-about.png</file>
+        <file>media/actions-icons/object-rotate-left.png</file>
+        <file>media/actions-icons/object-rotate-right.png</file>
+        <file>media/actions-icons/window-close.png</file>
+        <file>media/actions-icons/zoom-in.png</file>
+        <file>media/actions-icons/zoom-out.png</file>
+        <file>media/logo/easypaint_64.png</file>
+        <file>media/instruments-icons/curve.png</file>
+        <file>media/actions-icons/clear-gray.png</file>
+    </qresource>
+</RCC>
