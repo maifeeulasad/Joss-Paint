@@ -85,8 +85,8 @@ void TextInstrument::completeSelection(ImageArea &imageArea)
 {
     TextDialog *td = new TextDialog(mText, &imageArea);
     connect(td, SIGNAL(textChanged(ImageArea *, QString)), this, SLOT(updateText(ImageArea *, QString)));
-    connect(this, SIGNAL(sendCloseTextDialog()), td, SLOT(accept()));
-    connect(td, SIGNAL(canceled(ImageArea *)), this, SLOT(cancel(ImageArea *)));
+    connect(this, &TextInstrument::sendCloseTextDialog, td, &QDialog::accept);
+    connect(td, &TextDialog::canceled, this, &TextInstrument::cancel);
     td->setAttribute(Qt::WA_DeleteOnClose);
     td->show();
 }
@@ -117,6 +117,8 @@ void TextInstrument::paint(ImageArea &imageArea, bool, bool)
     if(mTopLeftPoint != mBottomRightPoint)
     {
         QPainter painter(imageArea.getImage());
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setRenderHint(QPainter::TextAntialiasing);
         painter.setPen(QPen(DataSingleton::Instance()->getPrimaryColor()));
         painter.setFont(DataSingleton::Instance()->getTextFont());
         painter.drawText(QRect(mTopLeftPoint, mBottomRightPoint), mText);

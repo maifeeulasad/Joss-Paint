@@ -30,6 +30,7 @@
 #include <QPen>
 #include <QPainter>
 #include <QImage>
+#include <QPainterPath>
 
 CurveLineInstrument::CurveLineInstrument(QObject *parent) :
     AbstractInstrument(parent)
@@ -114,6 +115,7 @@ void CurveLineInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &image
 void CurveLineInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
     QPainter painter(imageArea.getImage());
+    painter.setRenderHint(QPainter::Antialiasing);
     //make Bezier curve path
     QPainterPath path;
     path.moveTo(mStartPoint);
@@ -130,3 +132,4 @@ void CurveLineInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, boo
     painter.end();
     imageArea.update();
 }
+
