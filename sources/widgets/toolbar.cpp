@@ -1,27 +1,30 @@
 /*
- * This source file is part of EasyPaint.
- *
- * Copyright (c) 2012 EasyPaint <https://github.com/Gr1N/EasyPaint>
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN Button OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+MIT License
+
+Copyright (c) 2020 Maifee Ul Asad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+GitHub repo : https://github.com/maifeeulasad/Paint
+
+A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
+*/
 
 #include "toolbar.h"
 #include "colorchooser.h"
@@ -68,11 +71,11 @@ void ToolBar::initializeItems()
 
     QGridLayout *bLayout = new QGridLayout();
     bLayout->setMargin(3);
-    bLayout->addWidget(mCursorButton, 0, 0);
+    bLayout->addWidget(mPenButton, 0, 0);
     bLayout->addWidget(mEraserButton, 0, 1);
     bLayout->addWidget(mColorPickerPaletteButton, 1, 0);
     bLayout->addWidget(mMagnifierButton, 1, 1);
-    bLayout->addWidget(mPenButton, 2, 0);
+    bLayout->addWidget(mCursorButton, 2, 0);
     bLayout->addWidget(mLineButton, 2, 1);
     bLayout->addWidget(mSprayButton, 3, 0);
     bLayout->addWidget(mFillButton, 3, 1);
@@ -87,12 +90,12 @@ void ToolBar::initializeItems()
     mPColorChooser = new ColorChooser(0, 0, 0, this);
     mPColorChooser->setStatusTip(tr("Primary color"));
     mPColorChooser->setToolTip(tr("Primary color"));
-    connect(mPColorChooser, SIGNAL(sendColor(QColor)), this, SLOT(primaryColorChanged(QColor)));
+    connect(mPColorChooser, &ColorChooser::sendColor, this, &ToolBar::primaryColorChanged);
 
     mSColorChooser = new ColorChooser(255, 255, 255, this);
     mSColorChooser->setStatusTip(tr("Secondary color"));
     mSColorChooser->setToolTip(tr("Secondary color"));
-    connect(mSColorChooser, SIGNAL(sendColor(QColor)), this, SLOT(secondaryColorChanged(QColor)));
+    connect(mSColorChooser, &ColorChooser::sendColor, this, &ToolBar::secondaryColorChanged);
 
     QSpinBox *penSizeSpin = new QSpinBox();
     penSizeSpin->setRange(1, 20);
