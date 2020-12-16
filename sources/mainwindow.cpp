@@ -452,7 +452,7 @@ void MainWindow::initializeToolBar()
 void MainWindow::initializePaletteBar()
 {
     mPaletteBar = new PaletteBar(mToolbar);
-    addToolBar(Qt::BottomToolBarArea, mPaletteBar);
+    //addToolBar(Qt::BottomToolBarArea, mPaletteBar);
 }
 
 ImageArea* MainWindow::getCurrentImageArea()
