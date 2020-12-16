@@ -1,27 +1,30 @@
 /*
- * This source file is part of EasyPaint.
- *
- * Copyright (c) 2012 EasyPaint <https://github.com/Gr1N/EasyPaint>
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+MIT License
+
+Copyright (c) 2020 Maifee Ul Asad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+GitHub repo : https://github.com/maifeeulasad/Paint
+
+A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
+*/
 
 #include "imagearea.h"
 #include "datasingleton.h"
@@ -126,14 +129,14 @@ ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *paren
 
     QTimer *autoSaveTimer = new QTimer(this);
     autoSaveTimer->setInterval(DataSingleton::Instance()->getAutoSaveInterval() * 1000);
-    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
-    connect(mAdditionalTools, SIGNAL(sendNewImageSize(QSize)), this, SIGNAL(sendNewImageSize(QSize)));
+    connect(autoSaveTimer, &QTimer::timeout, this, &ImageArea::autoSave);
+    connect(mAdditionalTools, &AdditionalTools::sendNewImageSize, this, &ImageArea::sendNewImageSize);
 
     autoSaveTimer->start();
 
     SelectionInstrument *selectionInstrument = new SelectionInstrument(this);
-    connect(selectionInstrument, SIGNAL(sendEnableCopyCutActions(bool)), this, SIGNAL(sendEnableCopyCutActions(bool)));
-    connect(selectionInstrument, SIGNAL(sendEnableSelectionInstrument(bool)), this, SIGNAL(sendEnableSelectionInstrument(bool)));
+    connect(selectionInstrument, &SelectionInstrument::sendEnableCopyCutActions, this, &ImageArea::sendEnableCopyCutActions);
+    connect(selectionInstrument, &SelectionInstrument::sendEnableSelectionInstrument, this, &ImageArea::sendEnableSelectionInstrument);
 
     // Instruments handlers
     mInstrumentsHandlers.fill(0, (int)INSTRUMENTS_COUNT);

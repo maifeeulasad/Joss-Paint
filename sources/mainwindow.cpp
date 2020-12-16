@@ -1,27 +1,30 @@
 /*
- * This source file is part of EasyPaint.
- *
- * Copyright (c) 2012 EasyPaint <https://github.com/Gr1N/EasyPaint>
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+MIT License
+
+Copyright (c) 2020 Maifee Ul Asad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+GitHub repo : https://github.com/maifeeulasad/Paint
+
+A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
+*/
 
 #include "mainwindow.h"
 #include "widgets/toolbar.h"
@@ -89,9 +92,9 @@ void MainWindow::initializeTabWidget()
     mTabWidget->setUsesScrollButtons(true);
     mTabWidget->setTabsClosable(true);
     mTabWidget->setMovable(true);
-    connect(mTabWidget, SIGNAL(currentChanged(int)), this, SLOT(activateTab(int)));
-    connect(mTabWidget, SIGNAL(currentChanged(int)), this, SLOT(enableActions(int)));
-    connect(mTabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
+    connect(mTabWidget, &QTabWidget::currentChanged, this, &MainWindow::activateTab);
+    connect(mTabWidget, &QTabWidget::currentChanged, this, &MainWindow::enableActions);
+    connect(mTabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::closeTab);
     setCentralWidget(mTabWidget);
 }
 
@@ -124,15 +127,15 @@ void MainWindow::initializeNewTab(const bool &isOpen, const QString &filePath)
         mTabWidget->setCurrentIndex(mTabWidget->count()-1);
 
         mUndoStackGroup->addStack(imageArea->getUndoStack());
-        connect(imageArea, SIGNAL(sendPrimaryColorView()), mToolbar, SLOT(setPrimaryColorView()));
-        connect(imageArea, SIGNAL(sendSecondaryColorView()), mToolbar, SLOT(setSecondaryColorView()));
-        connect(imageArea, SIGNAL(sendRestorePreviousInstrument()), this, SLOT(restorePreviousInstrument()));
-        connect(imageArea, SIGNAL(sendSetInstrument(InstrumentsEnum)), this, SLOT(setInstrument(InstrumentsEnum)));
-        connect(imageArea, SIGNAL(sendNewImageSize(QSize)), this, SLOT(setNewSizeToSizeLabel(QSize)));
-        connect(imageArea, SIGNAL(sendCursorPos(QPoint)), this, SLOT(setNewPosToPosLabel(QPoint)));
-        connect(imageArea, SIGNAL(sendColor(QColor)), this, SLOT(setCurrentPipetteColor(QColor)));
-        connect(imageArea, SIGNAL(sendEnableCopyCutActions(bool)), this, SLOT(enableCopyCutActions(bool)));
-        connect(imageArea, SIGNAL(sendEnableSelectionInstrument(bool)), this, SLOT(instumentsAct(bool)));
+        connect(imageArea, &ImageArea::sendPrimaryColorView, mToolbar, &ToolBar::setPrimaryColorView);
+        connect(imageArea, &ImageArea::sendSecondaryColorView, mToolbar, &ToolBar::setSecondaryColorView);
+        connect(imageArea, &ImageArea::sendRestorePreviousInstrument, this, &MainWindow::restorePreviousInstrument);
+        connect(imageArea, &ImageArea::sendSetInstrument, this, &MainWindow::setInstrument);
+        connect(imageArea, &ImageArea::sendNewImageSize, this, &MainWindow::setNewSizeToSizeLabel);
+        connect(imageArea, &ImageArea::sendCursorPos, this, &MainWindow::setNewPosToPosLabel);
+        connect(imageArea, &ImageArea::sendColor, this, &MainWindow::setCurrentPipetteColor);
+        connect(imageArea, &ImageArea::sendEnableCopyCutActions, this, &MainWindow::enableCopyCutActions);
+        connect(imageArea, &ImageArea::sendEnableSelectionInstrument, this, &MainWindow::instumentsAct);
 
         setWindowTitle(QString("%1 - EasyPaint").arg(fileName));
     }
@@ -149,31 +152,31 @@ void MainWindow::initializeMainMenu()
     mNewAction = new QAction(tr("&New"), this);
     mNewAction->setIcon(QIcon::fromTheme("document-new", QIcon(":/media/actions-icons/document-new.png")));
     mNewAction->setIconVisibleInMenu(true);
-    connect(mNewAction, SIGNAL(triggered()), this, SLOT(newAct()));
+    connect(mNewAction, &QAction::triggered, this, &MainWindow::newAct);
     fileMenu->addAction(mNewAction);
 
     mOpenAction = new QAction(tr("&Open"), this);
     mOpenAction->setIcon(QIcon::fromTheme("document-open", QIcon(":/media/actions-icons/document-open.png")));
     mOpenAction->setIconVisibleInMenu(true);
-    connect(mOpenAction, SIGNAL(triggered()), this, SLOT(openAct()));
+    connect(mOpenAction, &QAction::triggered, this, &MainWindow::openAct);
     fileMenu->addAction(mOpenAction);
 
     mSaveAction = new QAction(tr("&Save"), this);
     mSaveAction->setIcon(QIcon::fromTheme("document-save", QIcon(":/media/actions-icons/document-save.png")));
     mSaveAction->setIconVisibleInMenu(true);
-    connect(mSaveAction, SIGNAL(triggered()), this, SLOT(saveAct()));
+    connect(mSaveAction, &QAction::triggered, this, &MainWindow::saveAct);
     fileMenu->addAction(mSaveAction);
 
     mSaveAsAction = new QAction(tr("Save as..."), this);
     mSaveAsAction->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/media/actions-icons/document-save-as.png")));
     mSaveAsAction->setIconVisibleInMenu(true);
-    connect(mSaveAsAction, SIGNAL(triggered()), this, SLOT(saveAsAct()));
+    connect(mSaveAsAction, &QAction::triggered, this, &MainWindow::saveAsAct);
     fileMenu->addAction(mSaveAsAction);
 
     mCloseAction = new QAction(tr("&Close"), this);
     mCloseAction->setIcon(QIcon::fromTheme("window-close", QIcon(":/media/actions-icons/window-close.png")));
     mCloseAction->setIconVisibleInMenu(true);
-    connect(mCloseAction, SIGNAL(triggered()), this, SLOT(closeTabAct()));
+    connect(mCloseAction, &QAction::triggered, this, &MainWindow::closeTabAct);
     fileMenu->addAction(mCloseAction);
 
     fileMenu->addSeparator();
@@ -181,7 +184,7 @@ void MainWindow::initializeMainMenu()
     mPrintAction = new QAction(tr("&Print"), this);
     mPrintAction->setIcon(QIcon::fromTheme("document-print", QIcon(":/media/actions-icons/document-print.png")));
     mPrintAction->setIconVisibleInMenu(true);
-    connect(mPrintAction, SIGNAL(triggered()), this, SLOT(printAct()));
+    connect(mPrintAction, &QAction::triggered, this, &MainWindow::printAct);
     fileMenu->addAction(mPrintAction);
 
     fileMenu->addSeparator();
@@ -189,7 +192,7 @@ void MainWindow::initializeMainMenu()
     mExitAction = new QAction(tr("&Exit"), this);
     mExitAction->setIcon(QIcon::fromTheme("application-exit", QIcon(":/media/actions-icons/application-exit.png")));
     mExitAction->setIconVisibleInMenu(true);
-    connect(mExitAction, SIGNAL(triggered()), SLOT(close()));
+    connect(mExitAction, &QAction::triggered, this, &QWidget::close);
     fileMenu->addAction(mExitAction);
 
     QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
@@ -212,20 +215,20 @@ void MainWindow::initializeMainMenu()
     mCopyAction->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/media/actions-icons/edit-copy.png")));
     mCopyAction->setIconVisibleInMenu(true);
     mCopyAction->setEnabled(false);
-    connect(mCopyAction, SIGNAL(triggered()), this, SLOT(copyAct()));
+    connect(mCopyAction, &QAction::triggered, this, &MainWindow::copyAct);
     editMenu->addAction(mCopyAction);
 
     mPasteAction = new QAction(tr("&Paste"), this);
     mPasteAction->setIcon(QIcon::fromTheme("edit-paste", QIcon(":/media/actions-icons/edit-paste.png")));
     mPasteAction->setIconVisibleInMenu(true);
-    connect(mPasteAction, SIGNAL(triggered()), this, SLOT(pasteAct()));
+    connect(mPasteAction, &QAction::triggered, this, &MainWindow::pasteAct);
     editMenu->addAction(mPasteAction);
 
     mCutAction = new QAction(tr("C&ut"), this);
     mCutAction->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/media/actions-icons/edit-cut.png")));
     mCutAction->setIconVisibleInMenu(true);
     mCutAction->setEnabled(false);
-    connect(mCutAction, SIGNAL(triggered()), this, SLOT(cutAct()));
+    connect(mCutAction, &QAction::triggered, this, &MainWindow::cutAct);
     editMenu->addAction(mCutAction);
 
     editMenu->addSeparator();
@@ -234,7 +237,7 @@ void MainWindow::initializeMainMenu()
     settingsAction->setShortcut(QKeySequence::Preferences);
     settingsAction->setIcon(QIcon::fromTheme("document-properties", QIcon(":/media/actions-icons/document-properties.png")));
     settingsAction->setIconVisibleInMenu(true);
-    connect(settingsAction, SIGNAL(triggered()), this, SLOT(settingsAct()));
+    connect(settingsAction, &QAction::triggered, this, &MainWindow::settingsAct);
     editMenu->addAction(settingsAction);
 
     mInstrumentsMenu = menuBar()->addMenu(tr("&Instruments"));
@@ -242,84 +245,84 @@ void MainWindow::initializeMainMenu()
     QAction *mCursorAction = new QAction(tr("Selection"), this);
     mCursorAction->setCheckable(true);
     mCursorAction->setIcon(QIcon(":/media/instruments-icons/cursor.png"));
-    connect(mCursorAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mCursorAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mCursorAction);
     mInstrumentsActMap.insert(CURSOR, mCursorAction);
 
     QAction *mEraserAction = new QAction(tr("Eraser"), this);
     mEraserAction->setCheckable(true);
     mEraserAction->setIcon(QIcon(":/media/instruments-icons/lastic.png"));
-    connect(mEraserAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mEraserAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mEraserAction);
     mInstrumentsActMap.insert(ERASER, mEraserAction);
 
     QAction *mColorPickerPaletteAction = new QAction(tr("Color picker palette"), this);
     mColorPickerPaletteAction->setCheckable(true);
     mColorPickerPaletteAction->setIcon(QIcon(":/media/instruments-icons/palette.png"));
-    connect(mColorPickerPaletteAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mColorPickerPaletteAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mColorPickerPaletteAction);
     mInstrumentsActMap.insert(COLORPICKERPALETTE, mColorPickerPaletteAction);
 
     QAction *mMagnifierAction = new QAction(tr("Magnifier"), this);
     mMagnifierAction->setCheckable(true);
     mMagnifierAction->setIcon(QIcon(":/media/instruments-icons/loupe.png"));
-    connect(mMagnifierAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mMagnifierAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mMagnifierAction);
     mInstrumentsActMap.insert(MAGNIFIER, mMagnifierAction);
 
     QAction *mPenAction = new QAction(tr("Pen"), this);
     mPenAction->setCheckable(true);
     mPenAction->setIcon(QIcon(":/media/instruments-icons/pencil.png"));
-    connect(mPenAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mPenAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mPenAction);
     mInstrumentsActMap.insert(PEN, mPenAction);
 
     QAction *mLineAction = new QAction(tr("Line"), this);
     mLineAction->setCheckable(true);
     mLineAction->setIcon(QIcon(":/media/instruments-icons/line.png"));
-    connect(mLineAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mLineAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mLineAction);
     mInstrumentsActMap.insert(LINE, mLineAction);
 
     QAction *mSprayAction = new QAction(tr("Spray"), this);
     mSprayAction->setCheckable(true);
     mSprayAction->setIcon(QIcon(":/media/instruments-icons/spray.png"));
-    connect(mSprayAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mSprayAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mSprayAction);
     mInstrumentsActMap.insert(SPRAY, mSprayAction);
 
     QAction *mFillAction = new QAction(tr("Fill"), this);
     mFillAction->setCheckable(true);
     mFillAction->setIcon(QIcon(":/media/instruments-icons/fill.png"));
-    connect(mFillAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mFillAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mFillAction);
     mInstrumentsActMap.insert(FILL, mFillAction);
 
     QAction *mRectangleAction = new QAction(tr("Rectangle"), this);
     mRectangleAction->setCheckable(true);
     mRectangleAction->setIcon(QIcon(":/media/instruments-icons/rectangle.png"));
-    connect(mRectangleAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mRectangleAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mRectangleAction);
     mInstrumentsActMap.insert(RECTANGLE, mRectangleAction);
 
     QAction *mEllipseAction = new QAction(tr("Ellipse"), this);
     mEllipseAction->setCheckable(true);
     mEllipseAction->setIcon(QIcon(":/media/instruments-icons/ellipse.png"));
-    connect(mEllipseAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mEllipseAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mEllipseAction);
     mInstrumentsActMap.insert(ELLIPSE, mEllipseAction);
 
     QAction *curveLineAction = new QAction(tr("Curve"), this);
     curveLineAction->setCheckable(true);
     curveLineAction->setIcon(QIcon(":/media/instruments-icons/curve.png"));
-    connect(curveLineAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(curveLineAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(curveLineAction);
     mInstrumentsActMap.insert(CURVELINE, curveLineAction);
 
     QAction *mTextAction = new QAction(tr("Text"), this);
     mTextAction->setCheckable(true);
     mTextAction->setIcon(QIcon(":/media/instruments-icons/text.png"));
-    connect(mTextAction, SIGNAL(triggered(bool)), this, SLOT(instumentsAct(bool)));
+    connect(mTextAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mTextAction);
     mInstrumentsActMap.insert(TEXT, mTextAction);
 
@@ -328,48 +331,48 @@ void MainWindow::initializeMainMenu()
     mEffectsMenu = menuBar()->addMenu(tr("E&ffects"));
 
     QAction *grayEfAction = new QAction(tr("Gray"), this);
-    connect(grayEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(grayEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(grayEfAction);
     mEffectsActMap.insert(GRAY, grayEfAction);
 
     QAction *negativeEfAction = new QAction(tr("Negative"), this);
-    connect(negativeEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(negativeEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(negativeEfAction);
     mEffectsActMap.insert(NEGATIVE, negativeEfAction);
 
     QAction *binarizationEfAction = new QAction(tr("Binarization"), this);
-    connect(binarizationEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(binarizationEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(binarizationEfAction);
     mEffectsActMap.insert(BINARIZATION, binarizationEfAction);
 
     QAction *gaussianBlurEfAction = new QAction(tr("Gaussian Blur"), this);
-    connect(gaussianBlurEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(gaussianBlurEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(gaussianBlurEfAction);
     mEffectsActMap.insert(GAUSSIANBLUR, gaussianBlurEfAction);
 
     QAction *gammaEfAction = new QAction(tr("Gamma"), this);
-    connect(gammaEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(gammaEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(gammaEfAction);
     mEffectsActMap.insert(GAMMA, gammaEfAction);
 
     QAction *sharpenEfAction = new QAction(tr("Sharpen"), this);
-    connect(sharpenEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(sharpenEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(sharpenEfAction);
     mEffectsActMap.insert(SHARPEN, sharpenEfAction);
 
     QAction *customEfAction = new QAction(tr("Custom"), this);
-    connect(customEfAction, SIGNAL(triggered()), this, SLOT(effectsAct()));
+    connect(customEfAction, &QAction::triggered, this, &MainWindow::effectsAct);
     mEffectsMenu->addAction(customEfAction);
     mEffectsActMap.insert(CUSTOM, customEfAction);
 
     mToolsMenu = menuBar()->addMenu(tr("&Tools"));
 
     QAction *resizeImAction = new QAction(tr("Image size..."), this);
-    connect(resizeImAction, SIGNAL(triggered()), this, SLOT(resizeImageAct()));
+    connect(resizeImAction, &QAction::triggered, this, &MainWindow::resizeImageAct);
     mToolsMenu->addAction(resizeImAction);
 
     QAction *resizeCanAction = new QAction(tr("Canvas size..."), this);
-    connect(resizeCanAction, SIGNAL(triggered()), this, SLOT(resizeCanvasAct()));
+    connect(resizeCanAction, &QAction::triggered, this, &MainWindow::resizeCanvasAct);
     mToolsMenu->addAction(resizeCanAction);
 
     QMenu *rotateMenu = new QMenu(tr("Rotate"));
@@ -377,13 +380,13 @@ void MainWindow::initializeMainMenu()
     QAction *rotateLAction = new QAction(tr("Counter-clockwise"), this);
     rotateLAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/media/actions-icons/object-rotate-left.png")));
     rotateLAction->setIconVisibleInMenu(true);
-    connect(rotateLAction, SIGNAL(triggered()), this, SLOT(rotateLeftImageAct()));
+    connect(rotateLAction, &QAction::triggered, this, &MainWindow::rotateLeftImageAct);
     rotateMenu->addAction(rotateLAction);
 
     QAction *rotateRAction = new QAction(tr("Clockwise"), this);
     rotateRAction->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/media/actions-icons/object-rotate-right.png")));
     rotateRAction->setIconVisibleInMenu(true);
-    connect(rotateRAction, SIGNAL(triggered()), this, SLOT(rotateRightImageAct()));
+    connect(rotateRAction, &QAction::triggered, this, &MainWindow::rotateRightImageAct);
     rotateMenu->addAction(rotateRAction);
 
     mToolsMenu->addMenu(rotateMenu);
@@ -393,18 +396,18 @@ void MainWindow::initializeMainMenu()
     mZoomInAction = new QAction(tr("Zoom In"), this);
     mZoomInAction->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/media/actions-icons/zoom-in.png")));
     mZoomInAction->setIconVisibleInMenu(true);
-    connect(mZoomInAction, SIGNAL(triggered()), this, SLOT(zoomInAct()));
+    connect(mZoomInAction, &QAction::triggered, this, &MainWindow::zoomInAct);
     zoomMenu->addAction(mZoomInAction);
 
     mZoomOutAction = new QAction(tr("Zoom Out"), this);
     mZoomOutAction->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/media/actions-icons/zoom-out.png")));
     mZoomOutAction->setIconVisibleInMenu(true);
-    connect(mZoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOutAct()));
+    connect(mZoomOutAction, &QAction::triggered, this, &MainWindow::zoomOutAct);
     zoomMenu->addAction(mZoomOutAction);
 
     QAction *advancedZoomAction = new QAction(tr("Advanced Zoom..."), this);
     advancedZoomAction->setIconVisibleInMenu(true);
-    connect(advancedZoomAction, SIGNAL(triggered()), this, SLOT(advancedZoomAct()));
+    connect(advancedZoomAction, &QAction::triggered, this, &MainWindow::advancedZoomAct);
     zoomMenu->addAction(advancedZoomAction);
 
     mToolsMenu->addMenu(zoomMenu);
@@ -415,7 +418,7 @@ void MainWindow::initializeMainMenu()
     aboutAction->setShortcut(QKeySequence::HelpContents);
     aboutAction->setIcon(QIcon::fromTheme("help-about", QIcon(":/media/actions-icons/help-about.png")));
     aboutAction->setIconVisibleInMenu(true);
-    connect(aboutAction, SIGNAL(triggered()), this, SLOT(helpAct()));
+    connect(aboutAction, &QAction::triggered, this, &MainWindow::helpAct);
     aboutMenu->addAction(aboutAction);
 
     QAction *aboutQtAction = new QAction(tr("About Qt"), this);
@@ -445,14 +448,14 @@ void MainWindow::initializeToolBar()
 {
     mToolbar = new ToolBar(mInstrumentsActMap, this);
     addToolBar(Qt::LeftToolBarArea, mToolbar);
-    connect(mToolbar, SIGNAL(sendClearStatusBarColor()), this, SLOT(clearStatusBarColor()));
-    connect(mToolbar, SIGNAL(sendClearImageSelection()), this, SLOT(clearImageSelection()));
+    connect(mToolbar, &ToolBar::sendClearStatusBarColor, this, &MainWindow::clearStatusBarColor);
+    connect(mToolbar, &ToolBar::sendClearImageSelection, this, &MainWindow::clearImageSelection);
 }
 
 void MainWindow::initializePaletteBar()
 {
     mPaletteBar = new PaletteBar(mToolbar);
-    addToolBar(Qt::BottomToolBarArea, mPaletteBar);
+    //addToolBar(Qt::BottomToolBarArea, mPaletteBar);
 }
 
 ImageArea* MainWindow::getCurrentImageArea()
@@ -761,7 +764,7 @@ void MainWindow::setAllInstrumentsUnchecked(QAction *action)
 void MainWindow::setInstrumentChecked(InstrumentsEnum instrument)
 {
     setAllInstrumentsUnchecked(NULL);
-    if(instrument == NONE_INSTRUMENT || instrument == INSTRUMENTS_COUNT)
+    if(instrument == PEN || instrument == INSTRUMENTS_COUNT)
         return;
     mInstrumentsActMap[instrument]->setChecked(true);
 }
@@ -785,8 +788,8 @@ void MainWindow::instumentsAct(bool state)
     else
     {
         setAllInstrumentsUnchecked(NULL);
-        DataSingleton::Instance()->setInstrument(NONE_INSTRUMENT);
-        emit sendInstrumentChecked(NONE_INSTRUMENT);
+        DataSingleton::Instance()->setInstrument(PEN);
+        emit sendInstrumentChecked(PEN);
         if(currentAction == mInstrumentsActMap[CURSOR])
             DataSingleton::Instance()->setPreviousInstrument(mInstrumentsActMap.key(currentAction));
     }
@@ -811,8 +814,8 @@ void MainWindow::enableActions(int index)
     if(!isEnable)
     {
         setAllInstrumentsUnchecked(NULL);
-        DataSingleton::Instance()->setInstrument(NONE_INSTRUMENT);
-        emit sendInstrumentChecked(NONE_INSTRUMENT);
+        DataSingleton::Instance()->setInstrument(PEN);
+        emit sendInstrumentChecked(PEN);
     }
 }
 
@@ -827,7 +830,7 @@ void MainWindow::clearImageSelection()
     if (getCurrentImageArea())
     {
         getCurrentImageArea()->clearSelection();
-        DataSingleton::Instance()->setPreviousInstrument(NONE_INSTRUMENT);
+        DataSingleton::Instance()->setPreviousInstrument(PEN);
     }
 }
 
