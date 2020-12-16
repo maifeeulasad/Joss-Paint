@@ -30,6 +30,7 @@
 #include <QPen>
 #include <QPainter>
 #include <math.h>
+#include <QRandomGenerator>
 
 SprayInstrument::SprayInstrument(QObject *parent) :
     AbstractInstrument(parent)
@@ -100,21 +101,21 @@ void SprayInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
     {
         switch(i) {
         case 0: case 1: case 2: case 3:
-            x = (qrand() % 5 - 2)
+            x = (QRandomGenerator::global()->generate() % 5 - 2)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
-            y = (qrand() % 5 - 2)
+            y = (QRandomGenerator::global()->generate() % 5 - 2)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
             break;
         case 4: case 5: case 6: case 7:
-            x = (qrand() % 10 - 4)
+            x = (QRandomGenerator::global()->generate() % 10 - 4)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
-            y = (qrand() % 10 - 4)
+            y = (QRandomGenerator::global()->generate() % 10 - 4)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
             break;
         case 8: case 9: case 10: case 11:
-            x = (qrand() % 15 - 7)
+            x = (QRandomGenerator::global()->generate() % 15 - 7)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
-            y = (qrand() % 15 - 7)
+            y = (QRandomGenerator::global()->generate() % 15 - 7)
                     * sqrt(DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor());
             break;
         }

@@ -84,6 +84,7 @@ void LineInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageArea)
 void LineInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
     QPainter painter(imageArea.getImage());
+    painter.setRenderHint(QPainter::Antialiasing);
     if(isSecondaryColor)
     {
         painter.setPen(QPen(DataSingleton::Instance()->getSecondaryColor(),

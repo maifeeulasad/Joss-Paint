@@ -61,5 +61,9 @@ void ColorpickerPaletteInstrument::mouseReleaseEvent(QMouseEvent *event, ImageAr
 
 void ColorpickerPaletteInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
-
+  bool inArea(true);
+  if(mStartPoint.x() < 0 || mStartPoint.y() < 0
+          || mStartPoint.x() > imageArea.getImage()->width()
+          || mStartPoint.y() > imageArea.getImage()->height())
+      inArea = false;
 }

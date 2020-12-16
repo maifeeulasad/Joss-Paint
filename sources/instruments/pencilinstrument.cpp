@@ -82,6 +82,7 @@ void PencilInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageAre
 void PencilInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
     QPainter painter(imageArea.getImage());
+    painter.setRenderHint(QPainter::Antialiasing);
     if(isSecondaryColor)
     {
         painter.setPen(QPen(DataSingleton::Instance()->getSecondaryColor(),

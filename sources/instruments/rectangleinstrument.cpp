@@ -83,6 +83,7 @@ void RectangleInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &image
 void RectangleInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
     QPainter painter(imageArea.getImage());
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(DataSingleton::Instance()->getPrimaryColor(),
                         DataSingleton::Instance()->getPenSize() * imageArea.getZoomFactor(),
                         Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
