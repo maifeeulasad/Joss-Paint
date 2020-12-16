@@ -38,6 +38,20 @@ void ColorpickerPaletteInstrument::mousePressEvent(QMouseEvent *event, ImageArea
     if(event->button() == Qt::LeftButton || event->button() == Qt::RightButton)
     {
         imageArea.setIsPaint(true);
+        DataSingleton *dataSingleton = DataSingleton::Instance();
+        QList<QColor> colorStack = dataSingleton->getColorStack();
+        for(int i = 0; i < colorStack.size(); i++){
+            QColorDialog::setCustomColor(colorStack.size() - i -1,colorStack[i]);
+        }
+        QColor color = QColorDialog::getColor(
+                    dataSingleton->getPrimaryColor(),
+                    &imageArea, "Pick a color",
+                    QColorDialog::DontUseNativeDialog);
+        dataSingleton->pushColorStack(color);
+        dataSingleton->setPrimaryColor(color);
+        imageArea.emitPrimaryColorView();
+        imageArea.setIsPaint(false);
+        imageArea.emitRestorePreviousInstrument();
     }
 }
 
@@ -48,22 +62,10 @@ void ColorpickerPaletteInstrument::mouseMoveEvent(QMouseEvent *event, ImageArea 
 
 void ColorpickerPaletteInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageArea)
 {
-    if(imageArea.isPaint())
-    {
-        DataSingleton *dataSingleton = DataSingleton::Instance();
-        QColor color = QColorDialog::getColor(dataSingleton->getPrimaryColor(), &imageArea, "Pick a color",  QColorDialog::DontUseNativeDialog);
-        dataSingleton->setPrimaryColor(color);
-        imageArea.emitPrimaryColorView();
-        imageArea.setIsPaint(false);
-        imageArea.emitRestorePreviousInstrument();
-    }
+
 }
 
 void ColorpickerPaletteInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
 {
-  bool inArea(true);
-  if(mStartPoint.x() < 0 || mStartPoint.y() < 0
-          || mStartPoint.x() > imageArea.getImage()->width()
-          || mStartPoint.y() > imageArea.getImage()->height())
-      inArea = false;
+
 }

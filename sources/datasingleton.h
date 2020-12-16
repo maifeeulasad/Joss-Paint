@@ -32,6 +32,8 @@
 #include <QtCore/QMap>
 #include <QKeySequence>
 #include <QFont>
+#include <QList>
+#include <QColorDialog>
 
 #include "easypaintenums.h"
 
@@ -53,6 +55,12 @@ public:
     inline void setPrimaryColor(const QColor &color) { mPrimaryColor = color; }
     inline QColor getSecondaryColor() { return mSecondaryColor; }
     inline void setSecondaryColor(const QColor &color) { mSecondaryColor = color; }
+    inline void pushColorStack(const QColor &color) {
+        mColorStack.append(color);
+        if(mColorStack.size()>QColorDialog::customCount())
+            mColorStack.removeAt(0);
+    }
+    inline QList<QColor> getColorStack() { return mColorStack; }
     inline int getPenSize() { return mPenSize; }
     inline void setPenSize(const int &size) { mPenSize = size; }
     inline InstrumentsEnum getInstrument() { return mCurrentInstrument; }
@@ -110,6 +118,7 @@ private:
     static DataSingleton* m_pInstance;
     QColor mPrimaryColor,
            mSecondaryColor;
+    QList<QColor> mColorStack;
     int mPenSize;
     InstrumentsEnum mCurrentInstrument, mPreviousInstrument;
     QSize mBaseSize, mWindowSize;
