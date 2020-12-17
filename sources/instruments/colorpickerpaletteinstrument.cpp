@@ -45,15 +45,18 @@ ColorpickerPaletteInstrument::ColorpickerPaletteInstrument(AbstractInstrument *p
 }
 
 void ColorpickerPaletteInstrument::mousePressEvent(QMouseEvent *event, ImageArea &imageArea){
-
+    (void)imageArea;
+    (void)event;
 }
 
 void ColorpickerPaletteInstrument::mouseMoveEvent(QMouseEvent *event, ImageArea &imageArea){
-
+    (void)imageArea;
+    (void)event;
 }
 
 void ColorpickerPaletteInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageArea){
-
+    (void)imageArea;
+    (void)event;
 }
 
 
@@ -77,5 +80,6 @@ void ColorpickerPaletteInstrument::showColorPalletteInstrument(ImageArea &imageA
 
 
 void ColorpickerPaletteInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool){
-
+    (void)imageArea;
+    (void)isSecondaryColor;
 }
