@@ -54,8 +54,8 @@ ShortcutEdit::ShortcutEdit(QWidget *parent) :
     setMinimumSize(qMax(msz.width(), mClearButton->sizeHint().height() + fr * 2 + 2),
                    qMax(msz.height(),mClearButton->sizeHint().height() + fr * 2 + 2));
 
-    connect(mClearButton, SIGNAL(clicked()), this, SLOT(clear()));
-    connect(this, SIGNAL(textChanged(QString)), SLOT(updateClearButton(QString)));
+    connect(mClearButton, &QAbstractButton::clicked, this, &QLineEdit::clear);
+    connect(this, &QLineEdit::textChanged, this, &ShortcutEdit::updateClearButton);
 }
 
 void ShortcutEdit::keyPressEvent(QKeyEvent *event)

@@ -36,9 +36,9 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 typedef enum
 {
     NONE_INSTRUMENT = 0,
+    PEN,
     CURSOR,
     ERASER,
-    PEN,
     LINE,
     COLORPICKERPALETTE,
     MAGNIFIER,
