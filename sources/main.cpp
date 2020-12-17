@@ -40,8 +40,8 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 
 void printHelpMessage()
 {
-    qDebug()<<"EasyPaint - simple graphics painting program\n"
-              "Usage: easypaint [options] [filename]\n\n"
+    qDebug()<<"JossPaint - simple graphics painting program\n"
+              "Usage: josspaint [options] [filename]\n\n"
               "Options:\n"
               "\t-h, --help\t\tshow this help message and exit\n"
               "\t-v, --version\t\tshow program's version number and exit";
@@ -106,11 +106,11 @@ int main(int argc, char *argv[])
     }
 
     QTranslator appTranslator;
-    QString translationsPath("/usr/share/easypaint/translations/");
+    QString translationsPath("/usr/share/josspaint/translations/");
     QString appLanguage = DataSingleton::Instance()->getAppLanguage();
     if(appLanguage == "system")
     {
-        appTranslator.load(translationsPath + "easypaint_" + QLocale::system().name());
+        appTranslator.load(translationsPath + "josspaint_" + QLocale::system().name());
     }
     else
     {

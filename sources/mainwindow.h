@@ -35,7 +35,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QMainWindow>
 #include <QtCore/QMap>
 
-#include "easypaintenums.h"
+#include "josspaintenums.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;

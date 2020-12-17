@@ -59,7 +59,7 @@ MainWindow::MainWindow(QStringList filePaths, QWidget *parent)
         resize(winSize);
     }
 
-    setWindowIcon(QIcon(":/media/logo/easypaint_64.png"));
+    setWindowIcon(QIcon(":/media/logo/josspaint_64.png"));
 
     mUndoStackGroup = new QUndoGroup(this);
 
@@ -140,7 +140,7 @@ void MainWindow::initializeNewTab(const bool &isOpen, const QString &filePath)
         connect(imageArea, &ImageArea::sendEnableCopyCutActions, this, &MainWindow::enableCopyCutActions);
         connect(imageArea, &ImageArea::sendEnableSelectionInstrument, this, &MainWindow::instumentsAct);
 
-        setWindowTitle(QString("%1 - EasyPaint").arg(fileName));
+        setWindowTitle(QString("%1 - JossPaint").arg(fileName));
     }
     else
     {
@@ -153,31 +153,31 @@ void MainWindow::initializeMainMenu()
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
 
     mNewAction = new QAction(tr("&New"), this);
-    mNewAction->setIcon(QIcon::fromTheme("document-new", QIcon(":/media/actions-icons/document-new.png")));
+    mNewAction->setIcon(QIcon::fromTheme("document-new"));
     mNewAction->setIconVisibleInMenu(true);
     connect(mNewAction, &QAction::triggered, this, &MainWindow::newAct);
     fileMenu->addAction(mNewAction);
 
     mOpenAction = new QAction(tr("&Open"), this);
-    mOpenAction->setIcon(QIcon::fromTheme("document-open", QIcon(":/media/actions-icons/document-open.png")));
+    mOpenAction->setIcon(QIcon::fromTheme("document-open"));
     mOpenAction->setIconVisibleInMenu(true);
     connect(mOpenAction, &QAction::triggered, this, &MainWindow::openAct);
     fileMenu->addAction(mOpenAction);
 
     mSaveAction = new QAction(tr("&Save"), this);
-    mSaveAction->setIcon(QIcon::fromTheme("document-save", QIcon(":/media/actions-icons/document-save.png")));
+    mSaveAction->setIcon(QIcon::fromTheme("document-save"));
     mSaveAction->setIconVisibleInMenu(true);
     connect(mSaveAction, &QAction::triggered, this, &MainWindow::saveAct);
     fileMenu->addAction(mSaveAction);
 
     mSaveAsAction = new QAction(tr("Save as..."), this);
-    mSaveAsAction->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/media/actions-icons/document-save-as.png")));
+    mSaveAsAction->setIcon(QIcon::fromTheme("document-save-as"));
     mSaveAsAction->setIconVisibleInMenu(true);
     connect(mSaveAsAction, &QAction::triggered, this, &MainWindow::saveAsAct);
     fileMenu->addAction(mSaveAsAction);
 
     mCloseAction = new QAction(tr("&Close"), this);
-    mCloseAction->setIcon(QIcon::fromTheme("window-close", QIcon(":/media/actions-icons/window-close.png")));
+    mCloseAction->setIcon(QIcon::fromTheme("window-close"));
     mCloseAction->setIconVisibleInMenu(true);
     connect(mCloseAction, &QAction::triggered, this, &MainWindow::closeTabAct);
     fileMenu->addAction(mCloseAction);
@@ -185,7 +185,7 @@ void MainWindow::initializeMainMenu()
     fileMenu->addSeparator();
 
     mPrintAction = new QAction(tr("&Print"), this);
-    mPrintAction->setIcon(QIcon::fromTheme("document-print", QIcon(":/media/actions-icons/document-print.png")));
+    mPrintAction->setIcon(QIcon::fromTheme("document-print"));
     mPrintAction->setIconVisibleInMenu(true);
     connect(mPrintAction, &QAction::triggered, this, &MainWindow::printAct);
     fileMenu->addAction(mPrintAction);
@@ -193,7 +193,7 @@ void MainWindow::initializeMainMenu()
     fileMenu->addSeparator();
 
     mExitAction = new QAction(tr("&Exit"), this);
-    mExitAction->setIcon(QIcon::fromTheme("application-exit", QIcon(":/media/actions-icons/application-exit.png")));
+    mExitAction->setIcon(QIcon::fromTheme("application-exit"));
     mExitAction->setIconVisibleInMenu(true);
     connect(mExitAction, &QAction::triggered, this, &QWidget::close);
     fileMenu->addAction(mExitAction);
@@ -201,13 +201,13 @@ void MainWindow::initializeMainMenu()
     QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
 
     mUndoAction = mUndoStackGroup->createUndoAction(this, tr("&Undo"));
-    mUndoAction->setIcon(QIcon::fromTheme("edit-undo", QIcon(":/media/actions-icons/edit-undo.png")));
+    mUndoAction->setIcon(QIcon::fromTheme("edit-undo"));
     mUndoAction->setIconVisibleInMenu(true);
     mUndoAction->setEnabled(false);
     editMenu->addAction(mUndoAction);
 
     mRedoAction = mUndoStackGroup->createRedoAction(this, tr("&Redo"));
-    mRedoAction->setIcon(QIcon::fromTheme("edit-redo", QIcon(":/media/actions-icons/edit-redo.png")));
+    mRedoAction->setIcon(QIcon::fromTheme("edit-redo"));
     mRedoAction->setIconVisibleInMenu(true);
     mRedoAction->setEnabled(false);
     editMenu->addAction(mRedoAction);
@@ -215,20 +215,20 @@ void MainWindow::initializeMainMenu()
     editMenu->addSeparator();
 
     mCopyAction = new QAction(tr("&Copy"), this);
-    mCopyAction->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/media/actions-icons/edit-copy.png")));
+    mCopyAction->setIcon(QIcon::fromTheme("edit-copy"));
     mCopyAction->setIconVisibleInMenu(true);
     mCopyAction->setEnabled(false);
     connect(mCopyAction, &QAction::triggered, this, &MainWindow::copyAct);
     editMenu->addAction(mCopyAction);
 
     mPasteAction = new QAction(tr("&Paste"), this);
-    mPasteAction->setIcon(QIcon::fromTheme("edit-paste", QIcon(":/media/actions-icons/edit-paste.png")));
+    mPasteAction->setIcon(QIcon::fromTheme("edit-paste"));
     mPasteAction->setIconVisibleInMenu(true);
     connect(mPasteAction, &QAction::triggered, this, &MainWindow::pasteAct);
     editMenu->addAction(mPasteAction);
 
     mCutAction = new QAction(tr("C&ut"), this);
-    mCutAction->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/media/actions-icons/edit-cut.png")));
+    mCutAction->setIcon(QIcon::fromTheme("edit-cut"));
     mCutAction->setIconVisibleInMenu(true);
     mCutAction->setEnabled(false);
     connect(mCutAction, &QAction::triggered, this, &MainWindow::cutAct);
@@ -238,7 +238,7 @@ void MainWindow::initializeMainMenu()
 
     QAction *settingsAction = new QAction(tr("&Settings"), this);
     settingsAction->setShortcut(QKeySequence::Preferences);
-    settingsAction->setIcon(QIcon::fromTheme("document-properties", QIcon(":/media/actions-icons/document-properties.png")));
+    settingsAction->setIcon(QIcon::fromTheme("document-properties"));
     settingsAction->setIconVisibleInMenu(true);
     connect(settingsAction, &QAction::triggered, this, &MainWindow::settingsAct);
     editMenu->addAction(settingsAction);
@@ -247,14 +247,14 @@ void MainWindow::initializeMainMenu()
 
     QAction *mCursorAction = new QAction(tr("Selection"), this);
     mCursorAction->setCheckable(true);
-    mCursorAction->setIcon(QIcon(":/media/instruments-icons/cursor.png"));
+    mCursorAction->setIcon(QIcon::fromTheme("select-rectangular"));
     connect(mCursorAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mCursorAction);
     mInstrumentsActMap.insert(CURSOR, mCursorAction);
 
     QAction *mEraserAction = new QAction(tr("Eraser"), this);
     mEraserAction->setCheckable(true);
-    mEraserAction->setIcon(QIcon(":/media/instruments-icons/lastic.png"));
+    mEraserAction->setIcon(QIcon::fromTheme("tool_eraser"));
     connect(mEraserAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mEraserAction);
     mInstrumentsActMap.insert(ERASER, mEraserAction);
@@ -417,7 +417,7 @@ void MainWindow::initializeMainMenu()
 
     QMenu *aboutMenu = menuBar()->addMenu(tr("&About"));
 
-    QAction *aboutAction = new QAction(tr("&About EasyPaint"), this);
+    QAction *aboutAction = new QAction(tr("&About JossPaint"), this);
     aboutAction->setShortcut(QKeySequence::HelpContents);
     aboutAction->setIcon(QIcon::fromTheme("help-about", QIcon(":/media/actions-icons/help-about.png")));
     aboutAction->setIconVisibleInMenu(true);
@@ -489,11 +489,11 @@ void MainWindow::activateTab(const int &index)
 
     if(!getCurrentImageArea()->getFileName().isEmpty())
     {
-        setWindowTitle(QString("%1 - EasyPaint").arg(getCurrentImageArea()->getFileName()));
+        setWindowTitle(QString("%1 - JossPaint").arg(getCurrentImageArea()->getFileName()));
     }
     else
     {
-        setWindowTitle(QString("%1 - EasyPaint").arg(tr("Untitled Image")));
+        setWindowTitle(QString("%1 - JossPaint").arg(tr("Untitled Image")));
     }
     mUndoStackGroup->setActiveStack(getCurrentImageArea()->getUndoStack());
 }
@@ -698,7 +698,7 @@ void MainWindow::closeTab(int index)
     delete wid;
     if (mTabWidget->count() == 0)
     {
-        setWindowTitle("Empty - EasyPaint");
+        setWindowTitle("Empty - JossPaint");
     }
 }
 
@@ -854,10 +854,10 @@ void MainWindow::setInstrument(InstrumentsEnum instrument)
 
 void MainWindow::helpAct()
 {
-    QMessageBox::about(this, tr("About EasyPaint"),
-                       QString("<b>EasyPaint</b> %1: %2 <br> <br> %3: "
-                               "<a href=\"https://github.com/Gr1N/EasyPaint/\">https://github.com/Gr1N/EasyPaint/</a>"
-                               "<br> <br>Copyright (c) 2012 EasyPaint team"
+    QMessageBox::about(this, tr("About JossPaint"),
+                       QString("<b>JossPaint</b> %1: %2 <br> <br> %3: "
+                               "<a href=\"https://github.com/maifeeulasad/Joss-Paint\">https://github.com/maifeeulasad/Joss-Paint</a>"
+                               "<br> <br>Copyright (c) 2020 JossPaint team"
                                "<br> <br>%4:<ul>"
                                "<li><a href=\"mailto:grin.minsk@gmail.com\">Nikita Grishko</a> (Gr1N)</li>"
                                "<li><a href=\"mailto:faulknercs@yandex.ru\">Artem Stepanyuk</a> (faulknercs)</li>"
@@ -866,5 +866,5 @@ void MainWindow::helpAct()
                                "</ul>"
                                "<br> %5")
                        .arg(tr("version")).arg("0.1.0").arg(tr("Site")).arg(tr("Authors"))
-                       .arg(tr("If you like <b>EasyPaint</b> and you want to share your opinion, or send a bug report, or want to suggest new features, we are waiting for you on our <a href=\"https://github.com/Gr1N/EasyPaint/issues?milestone=&sort=created&direction=desc&state=open\">tracker</a>.")));
+                       .arg(tr("If you like <b>JossPaint</b> and you want to share your opinion, or send a bug report, or want to suggest new features, we are waiting for you on our <a href=\"https://github.com/maifeeulasad/Joss-Paint/issues?milestone=&sort=created&direction=desc&state=open\">tracker</a>.")));
 }
