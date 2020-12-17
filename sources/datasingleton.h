@@ -41,7 +41,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QList>
 #include <QColorDialog>
 
-#include "easypaintenums.h"
+#include "josspaintenums.h"
 
 /**
  * @brief Singleton for variables needed for the program.

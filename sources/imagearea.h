@@ -32,7 +32,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #ifndef IMAGEAREA_H
 #define IMAGEAREA_H
 
-#include "easypaintenums.h"
+#include "josspaintenums.h"
 #include "additionaltools.h"
 
 #include <QWidget>
