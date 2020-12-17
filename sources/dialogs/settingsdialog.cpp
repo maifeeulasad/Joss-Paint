@@ -1,27 +1,33 @@
 /*
- * This source file is part of EasyPaint.
- *
- * Copyright (c) 2012 EasyPaint <https://github.com/Gr1N/EasyPaint>
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+MIT License
+
+Copyright (c) 2020 Maifee Ul Asad
+
+Copyright (c) 2012 EasyPaint https://github.com/Gr1N/EasyPaint
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+GitHub repo : https://github.com/maifeeulasad/Paint
+
+A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
+*/
 
 #include "settingsdialog.h"
 #include "../datasingleton.h"
@@ -73,6 +79,7 @@ void SettingsDialog::initializeGui()
     mLanguageBox->addItem("Czech");
     mLanguageBox->addItem("French");
     mLanguageBox->addItem("Russian");
+    mLanguageBox->addItem("Bengali");
     mLanguageBox->setCurrentIndex(getLanguageIndex());
     QHBoxLayout *hBox1 = new QHBoxLayout();
     hBox1->addWidget(label1);
@@ -181,7 +188,7 @@ void SettingsDialog::initializeGui()
 int SettingsDialog::getLanguageIndex()
 {
     QStringList languages;
-    languages<<"system"<<"easypaint_en_EN"<<"easypaint_cs_CZ"<<"easypaint_fr_FR"<<"easypaint_ru_RU";
+    languages<<"system"<<"josspaint_en_EN"<<"josspaint_cs_CZ"<<"josspaint_fr_FR"<<"josspaint_ru_RU"<<"josspaint_bn_BN";
     return languages.indexOf(DataSingleton::Instance()->getAppLanguage());
 }
 
@@ -195,7 +202,7 @@ void SettingsDialog::sendSettingsToSingleton()
     DataSingleton::Instance()->setAutoSaveInterval(mAutoSaveInterval->value());
 
     QStringList languages;
-    languages<<"system"<<"easypaint_en_EN"<<"easypaint_cs_CZ"<<"easypaint_fr_FR"<<"easypaint_ru_RU";
+    languages<<"system"<<"josspaint_en_EN"<<"josspaint_cs_CZ"<<"josspaint_fr_FR"<<"josspaint_ru_RU"<<"josspaint_bn_BN";
     DataSingleton::Instance()->setAppLanguage(languages.at(mLanguageBox->currentIndex()));
 
     QTreeWidgetItem *item;
