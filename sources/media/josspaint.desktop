@@ -1,0 +1,23 @@
+[Desktop Entry]
+Categories=Graphics;2DGraphics;RasterGraphics;Qt;
+Comment[ru_RU]=Создание и редактирование изображений
+Comment=Создание и редактирование изображений
+Exec=JossPaint
+GenericName[ru_RU]=Редактор изображений
+GenericName=Редактор изображений
+Icon=josspaint_64
+MimeType=image/x-xwindowdump;image/x-xpixmap;image/x-xcf;image/x-xbitmap;image/x-tga;image/x-sgi;image/x-portable-pixmap;image/x-portable-graymap;image/x-portable-bitmap;image/x-portable-anymap;image/x-compressed-xcf;image/vnd.adobe.photoshop;image/tiff;image/png;image/jpeg;image/gif;image/fits;image/bmp;
+Name[ru_RU]=JossPaint
+Name=JossPaint
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+TryExec=JossPaint
+Type=Application
+Version=0.2
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-RunOnDiscreteGpu=false
+X-KDE-SubstituteUID=false
+X-KDE-Username=
