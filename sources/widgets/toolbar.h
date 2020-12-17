@@ -32,7 +32,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #ifndef TOOLBAR_H
 #define TOOLBAR_H
 
-#include "../easypaintenums.h"
+#include "../josspaintenums.h"
 
 #include <QToolBar>
 
