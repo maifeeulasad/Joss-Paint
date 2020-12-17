@@ -40,63 +40,63 @@ PaletteBar::PaletteBar(ToolBar *toolbar) :
 void PaletteBar::initializeItems()
 {
     mColorButton = new PaletteButton(Qt::black);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::white);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::red);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkRed);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::green);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkGreen);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::blue);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkBlue);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::cyan);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkCyan);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::magenta);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkMagenta);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::yellow);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::darkYellow);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 
     mColorButton = new PaletteButton(Qt::gray);
-    connect(mColorButton, SIGNAL(colorPicked()), this, SLOT(colorClicked()));
+    connect(mColorButton, &PaletteButton::colorPicked, this, &PaletteBar::colorClicked);
     addWidget(mColorButton);
 }
 

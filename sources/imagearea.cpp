@@ -129,14 +129,14 @@ ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *paren
 
     QTimer *autoSaveTimer = new QTimer(this);
     autoSaveTimer->setInterval(DataSingleton::Instance()->getAutoSaveInterval() * 1000);
-    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
-    connect(mAdditionalTools, SIGNAL(sendNewImageSize(QSize)), this, SIGNAL(sendNewImageSize(QSize)));
+    connect(autoSaveTimer, &QTimer::timeout, this, &ImageArea::autoSave);
+    connect(mAdditionalTools, &AdditionalTools::sendNewImageSize, this, &ImageArea::sendNewImageSize);
 
     autoSaveTimer->start();
 
     SelectionInstrument *selectionInstrument = new SelectionInstrument(this);
-    connect(selectionInstrument, SIGNAL(sendEnableCopyCutActions(bool)), this, SIGNAL(sendEnableCopyCutActions(bool)));
-    connect(selectionInstrument, SIGNAL(sendEnableSelectionInstrument(bool)), this, SIGNAL(sendEnableSelectionInstrument(bool)));
+    connect(selectionInstrument, &SelectionInstrument::sendEnableCopyCutActions, this, &ImageArea::sendEnableCopyCutActions);
+    connect(selectionInstrument, &SelectionInstrument::sendEnableSelectionInstrument, this, &ImageArea::sendEnableSelectionInstrument);
 
     // Instruments handlers
     mInstrumentsHandlers.fill(0, (int)INSTRUMENTS_COUNT);

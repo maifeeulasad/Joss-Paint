@@ -41,7 +41,7 @@ SharpenFilterSettings::SharpenFilterSettings(QWidget *parent) :
     mIntensitySlider->setMinimum(1);
     mIntensitySlider->setMaximum(10);
     mIntensitySlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
-    connect(mIntensitySlider, SIGNAL(valueChanged(int)), this, SIGNAL(matrixChanged()));
+    connect(mIntensitySlider, &QAbstractSlider::valueChanged, this, &AbstractEffectSettings::matrixChanged);
 
     QVBoxLayout *vLayout = new QVBoxLayout();
 

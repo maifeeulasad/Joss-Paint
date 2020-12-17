@@ -38,8 +38,8 @@ DataSingleton::DataSingleton()
     mSecondaryColor = Qt::white;
     mPenSize = 1;
     mTextFont = QFont("Times", 12);
-    mCurrentInstrument = NONE_INSTRUMENT;
-    mPreviousInstrument = NONE_INSTRUMENT;
+    mCurrentInstrument = PEN;
+    mPreviousInstrument = PEN;
     mIsInitialized = false;
     readSetting();
     readState();

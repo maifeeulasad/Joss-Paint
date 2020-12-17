@@ -71,11 +71,11 @@ void ToolBar::initializeItems()
 
     QGridLayout *bLayout = new QGridLayout();
     bLayout->setMargin(3);
-    bLayout->addWidget(mCursorButton, 0, 0);
+    bLayout->addWidget(mPenButton, 0, 0);
     bLayout->addWidget(mEraserButton, 0, 1);
     bLayout->addWidget(mColorPickerPaletteButton, 1, 0);
     bLayout->addWidget(mMagnifierButton, 1, 1);
-    bLayout->addWidget(mPenButton, 2, 0);
+    bLayout->addWidget(mCursorButton, 2, 0);
     bLayout->addWidget(mLineButton, 2, 1);
     bLayout->addWidget(mSprayButton, 3, 0);
     bLayout->addWidget(mFillButton, 3, 1);
@@ -90,12 +90,12 @@ void ToolBar::initializeItems()
     mPColorChooser = new ColorChooser(0, 0, 0, this);
     mPColorChooser->setStatusTip(tr("Primary color"));
     mPColorChooser->setToolTip(tr("Primary color"));
-    connect(mPColorChooser, SIGNAL(sendColor(QColor)), this, SLOT(primaryColorChanged(QColor)));
+    connect(mPColorChooser, &ColorChooser::sendColor, this, &ToolBar::primaryColorChanged);
 
     mSColorChooser = new ColorChooser(255, 255, 255, this);
     mSColorChooser->setStatusTip(tr("Secondary color"));
     mSColorChooser->setToolTip(tr("Secondary color"));
-    connect(mSColorChooser, SIGNAL(sendColor(QColor)), this, SLOT(secondaryColorChanged(QColor)));
+    connect(mSColorChooser, &ColorChooser::sendColor, this, &ToolBar::secondaryColorChanged);
 
     QSpinBox *penSizeSpin = new QSpinBox();
     penSizeSpin->setRange(1, 20);
