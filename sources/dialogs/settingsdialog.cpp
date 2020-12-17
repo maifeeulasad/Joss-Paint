@@ -188,7 +188,7 @@ void SettingsDialog::initializeGui()
 int SettingsDialog::getLanguageIndex()
 {
     QStringList languages;
-    languages<<"system"<<"easypaint_en_EN"<<"easypaint_cs_CZ"<<"easypaint_fr_FR"<<"easypaint_ru_RU"<<"easypaint_bn_BN";
+    languages<<"system"<<"josspaint_en_EN"<<"josspaint_cs_CZ"<<"josspaint_fr_FR"<<"josspaint_ru_RU"<<"josspaint_bn_BN";
     return languages.indexOf(DataSingleton::Instance()->getAppLanguage());
 }
 
@@ -202,7 +202,7 @@ void SettingsDialog::sendSettingsToSingleton()
     DataSingleton::Instance()->setAutoSaveInterval(mAutoSaveInterval->value());
 
     QStringList languages;
-    languages<<"system"<<"easypaint_en_EN"<<"easypaint_cs_CZ"<<"easypaint_fr_FR"<<"easypaint_ru_RU"<<"easypaint_bn_BN";
+    languages<<"system"<<"josspaint_en_EN"<<"josspaint_cs_CZ"<<"josspaint_fr_FR"<<"josspaint_ru_RU"<<"josspaint_bn_BN";
     DataSingleton::Instance()->setAppLanguage(languages.at(mLanguageBox->currentIndex()));
 
     QTreeWidgetItem *item;
