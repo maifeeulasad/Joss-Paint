@@ -3742,6 +3742,11 @@ cookie@0.4.0:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
 
+copy-clipboard-js@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/copy-clipboard-js/-/copy-clipboard-js-1.0.3.tgz#ade70416404cc7997752f11f40cda67b8a1ecb3c"
+  integrity sha512-8dduCjn/B6cBFHF7cDsBMd1cAKrlGv58ZdNRcPRyUkRXYwZ+k0v2iQTtPgIFL6+wRSJkLzbLzfkyp6fIJkbt8Q==
+
 copy-concurrently@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/copy-concurrently/-/copy-concurrently-1.0.5.tgz#92297398cae34937fcafd6ec8139c18051f0b5e0"
@@ -9403,6 +9408,26 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-mua-error@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-mua-error/-/react-mua-error-2.1.2.tgz#6d5e0683ee39ddc179c57fcacbad0d697bcd253c"
+  integrity sha512-REuU/csJM86/WHxrpBaSNLqWEUuLtTGCnaAT3WtYd4defpX2ls380MMvdZnUiUNT/RkM/9Di4uyJ2FE5JR74dA==
+
+react-mua-gallery@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-mua-gallery/-/react-mua-gallery-2.2.0.tgz#0db39c156aef8fd39c664d86265de732a84d2764"
+  integrity sha512-ZAafmVrzDCSJErCkp+EPtubkBREpx63BtWKWKCPK3M77ImKtaBkH29/ypmfLc5TGpXJ7pyGqXNn6oP+toP//Kg==
+
+react-mua-login@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-mua-login/-/react-mua-login-2.1.2.tgz#e34ba2091f6465517cc858bb701c02122ef7db5f"
+  integrity sha512-QZDZ5HeLnjCtHf32keQlUfHumbqKeThjslURCe3bce3deEdFcvn7wkibr4FQG+Vjq6P5B6U5tWKzB2hgkTDBhg==
+
+react-mua-signup@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-mua-signup/-/react-mua-signup-2.1.2.tgz#6d82efe83fdd35f71a18da9935eb680927317e1d"
+  integrity sha512-8iJGsRdTdhYLoTT31Mei4xuLvQH8fkWz/J91aEJBbNkY9kGPR5L6Ff9f8YgRWDe0k0DgAc2+rIPy8+pbJH7c5w==
 
 react-refresh@^0.8.3:
   version "0.8.3"
