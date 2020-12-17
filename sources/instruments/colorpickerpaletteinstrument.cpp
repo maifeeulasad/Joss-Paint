@@ -35,43 +35,47 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QColorDialog>
 
 ColorpickerPaletteInstrument::ColorpickerPaletteInstrument(QObject *parent) :
-    AbstractInstrument(parent)
-{
+    AbstractInstrument(parent){
+
 }
 
-void ColorpickerPaletteInstrument::mousePressEvent(QMouseEvent *event, ImageArea &imageArea)
-{
-    if(event->button() == Qt::LeftButton || event->button() == Qt::RightButton)
-    {
-        imageArea.setIsPaint(true);
-        DataSingleton *dataSingleton = DataSingleton::Instance();
-        QList<QColor> colorStack = dataSingleton->getColorStack();
-        for(int i = 0; i < colorStack.size(); i++){
-            QColorDialog::setCustomColor(colorStack.size() - i -1,colorStack[i]);
-        }
-        QColor color = QColorDialog::getColor(
-                    dataSingleton->getPrimaryColor(),
-                    &imageArea, "Pick a color",
-                    QColorDialog::DontUseNativeDialog);
-        dataSingleton->pushColorStack(color);
-        dataSingleton->setPrimaryColor(color);
-        imageArea.emitPrimaryColorView();
-        imageArea.setIsPaint(false);
-        imageArea.emitRestorePreviousInstrument();
+ColorpickerPaletteInstrument::ColorpickerPaletteInstrument(AbstractInstrument *parent) :
+    AbstractInstrument(parent){
+
+}
+
+void ColorpickerPaletteInstrument::mousePressEvent(QMouseEvent *event, ImageArea &imageArea){
+
+}
+
+void ColorpickerPaletteInstrument::mouseMoveEvent(QMouseEvent *event, ImageArea &imageArea){
+
+}
+
+void ColorpickerPaletteInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageArea){
+
+}
+
+
+void ColorpickerPaletteInstrument::showColorPalletteInstrument(ImageArea &imageArea){
+    imageArea.setIsPaint(true);
+    DataSingleton *dataSingleton = DataSingleton::Instance();
+    QList<QColor> colorStack = dataSingleton->getColorStack();
+    for(int i = 0; i < colorStack.size(); i++){
+        QColorDialog::setCustomColor(colorStack.size() - i -1,colorStack[i]);
     }
+    QColor color = QColorDialog::getColor(
+                dataSingleton->getPrimaryColor(),
+                &imageArea, "Pick a color",
+                QColorDialog::DontUseNativeDialog);
+    dataSingleton->pushColorStack(color);
+    dataSingleton->setPrimaryColor(color);
+    imageArea.emitPrimaryColorView();
+    imageArea.setIsPaint(false);
+    imageArea.emitRestorePreviousInstrument();
 }
 
-void ColorpickerPaletteInstrument::mouseMoveEvent(QMouseEvent *event, ImageArea &imageArea)
-{
 
-}
-
-void ColorpickerPaletteInstrument::mouseReleaseEvent(QMouseEvent *event, ImageArea &imageArea)
-{
-
-}
-
-void ColorpickerPaletteInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool)
-{
+void ColorpickerPaletteInstrument::paint(ImageArea &imageArea, bool isSecondaryColor, bool){
 
 }

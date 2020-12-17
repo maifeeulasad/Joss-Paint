@@ -604,7 +604,6 @@ void MainWindow::updateShortcuts()
     mInstrumentsActMap[CURSOR]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Cursor"));
     mInstrumentsActMap[ERASER]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Lastic"));
     mInstrumentsActMap[COLORPICKERPALETTE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Pipette"));
-    //todo : add short-cut for color picker widget
     mInstrumentsActMap[MAGNIFIER]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Loupe"));
     mInstrumentsActMap[PEN]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Pen"));
     mInstrumentsActMap[LINE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Line"));
@@ -777,11 +776,11 @@ void MainWindow::instumentsAct(bool state)
     QAction *currentAction = static_cast<QAction*>(sender());
     if(state)
     {
-        //todo : logic for new color picker palette
         if(currentAction == mInstrumentsActMap[COLORPICKERPALETTE] && !mPrevInstrumentSetted)
         {
             DataSingleton::Instance()->setPreviousInstrument(DataSingleton::Instance()->getInstrument());
             mPrevInstrumentSetted = true;
+            getCurrentImageArea()->colorpickerPaletteClicked();
         }
         setAllInstrumentsUnchecked(currentAction);
         currentAction->setChecked(true);

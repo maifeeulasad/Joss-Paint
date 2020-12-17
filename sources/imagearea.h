@@ -170,6 +170,11 @@ public:
      *
      */
     void pushUndoCommand(UndoCommand *command);
+    /**
+     * @brief To use as callback when ever the color-picker is selected.
+     *
+     */
+    void colorpickerPaletteClicked();
     
 private:
     /**

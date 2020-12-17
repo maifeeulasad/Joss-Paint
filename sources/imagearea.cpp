@@ -298,6 +298,13 @@ void ImageArea::autoSave()
     }
 }
 
+void ImageArea::colorpickerPaletteClicked(){
+    mInstrumentHandler = mInstrumentsHandlers.at(DataSingleton::Instance()->getInstrument());
+    ColorpickerPaletteInstrument *mColorpickerPaletteInstrument
+            = new ColorpickerPaletteInstrument(mInstrumentHandler);
+    mColorpickerPaletteInstrument->showColorPalletteInstrument(*this);
+}
+
 void ImageArea::print()
 {
     QPrinter *printer = new QPrinter();
@@ -369,13 +376,11 @@ void ImageArea::mousePressEvent(QMouseEvent *event)
             event->pos().x() < mImage->rect().right() + 6 &&
             event->pos().x() > mImage->rect().right() &&
             event->pos().y() > mImage->rect().bottom() &&
-            event->pos().y() < mImage->rect().bottom() + 6)
-    {
+            event->pos().y() < mImage->rect().bottom() + 6){
         mIsResize = true;
         setCursor(Qt::SizeFDiagCursor);
     }
-    else if(DataSingleton::Instance()->getInstrument() != NONE_INSTRUMENT)
-    {
+    else if(DataSingleton::Instance()->getInstrument() != NONE_INSTRUMENT){
         mInstrumentHandler = mInstrumentsHandlers.at(DataSingleton::Instance()->getInstrument());
         mInstrumentHandler->mousePressEvent(event, *this);
     }
@@ -385,6 +390,7 @@ void ImageArea::mouseMoveEvent(QMouseEvent *event)
 {
     InstrumentsEnum instrument = DataSingleton::Instance()->getInstrument();
     mInstrumentHandler = mInstrumentsHandlers.at(DataSingleton::Instance()->getInstrument());
+
     if(mIsResize)
     {
          mAdditionalTools->resizeCanvas(event->x(), event->y());
