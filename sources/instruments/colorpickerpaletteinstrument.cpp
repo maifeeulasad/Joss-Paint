@@ -70,7 +70,10 @@ void ColorpickerPaletteInstrument::showColorPalletteInstrument(ImageArea &imageA
     QColor color = QColorDialog::getColor(
                 dataSingleton->getPrimaryColor(),
                 &imageArea, "Pick a color",
-                QColorDialog::DontUseNativeDialog);
+                {
+                    QColorDialog::ShowAlphaChannel,
+                    QColorDialog::DontUseNativeDialog
+                });
     dataSingleton->pushColorStack(color);
     dataSingleton->setPrimaryColor(color);
     imageArea.emitPrimaryColorView();
