@@ -63,12 +63,6 @@ public:
      * @param parent Pointer for parent.
      */
     explicit ImageArea(const bool &isOpen, const QString &filePath, QWidget *parent);
-    /**
-     * @brief Constructor
-     *
-     * @param imageArea just another ImageArea pointer location.
-     */
-    explicit ImageArea(ImageArea &imageArea);
     ~ImageArea();
 
     /**
@@ -216,9 +210,6 @@ private:
         mOriginalImage; /**< Copy of main image, need for events. */ // ?????????????
     AdditionalTools *mAdditionalTools;
     QString mFilePath; /**< Path where located image. */
-    QString _mFilePath; /**< filePath @param passed in constructor. */
-    QWidget *_mParent; /**< parent @param passed in constructor. */
-    bool _mIsOpen; /**< isOpen @param passed in constructor. */
     QString mOpenFilter; /**< Supported open formats filter. */
     QString mSaveFilter; /**< Supported save formats filter. */
     bool mIsEdited, mIsPaint, mIsResize, mRightButtonPressed;

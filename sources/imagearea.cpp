@@ -74,11 +74,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QClipboard>
 
 ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *parent) :
-    QWidget(parent), mIsEdited(false), mIsPaint(false), mIsResize(false)
-{
-    _mIsOpen = isOpen;
-    _mFilePath = filePath;
-    _mParent = parent;
+    QWidget(parent), mIsEdited(false), mIsPaint(false), mIsResize(false){
 
     setMouseTracking(true);
 
@@ -171,14 +167,7 @@ ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *paren
     mEffectsHandlers[CUSTOM] = new CustomEffect(this);
 }
 
-
-ImageArea::ImageArea(ImageArea &imageArea)
-    : ImageArea(imageArea._mIsOpen,imageArea._mFilePath,imageArea._mParent){
-
-}
-
-ImageArea::~ImageArea()
-{
+ImageArea::~ImageArea(){
 
 }
 
