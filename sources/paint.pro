@@ -107,7 +107,8 @@ HEADERS  += mainwindow.h \
 TRANSLATIONS += \
     translations/easypaint_cs_CZ.ts \
     translations/easypaint_fr_FR.ts \
-    translations/easypaint_ru_RU.ts
+    translations/easypaint_ru_RU.ts \
+    translations/easypaint_bn_BN.ts
 
 RESOURCES += \
     resources.qrc
