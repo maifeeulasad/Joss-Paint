@@ -341,6 +341,11 @@ void ImageArea::rotateImage(bool flag)
     emit sendNewImageSize(mImage->size());
 }
 
+void ImageArea::rotateImage(int x,int y)
+{
+    mAdditionalTools->rotateImage(x,y);
+}
+
 void ImageArea::applyEffect(EffectsEnum effect)
 {
     mEffectHandler = mEffectsHandlers.at(effect);

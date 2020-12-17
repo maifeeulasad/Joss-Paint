@@ -645,6 +645,8 @@ void MainWindow::rotateRightImageAct()
     getCurrentImageArea()->rotateImage(true);
 }
 
+//todo : rotate degree input, or options
+
 void MainWindow::zoomInAct()
 {
     getCurrentImageArea()->zoomImage(2.0);

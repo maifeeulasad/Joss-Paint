@@ -143,3 +143,14 @@ bool AdditionalTools::zoomImage(qreal factor)
         return true;
     }
 }
+
+bool AdditionalTools::rotateImage(int x, int y)
+{
+    QTransform transform = QTransform().rotate(x, Qt::Axis::XAxis).rotate(y, Qt::Axis::YAxis);
+    mPImageArea->setImage(mPImageArea->getImage()->transformed(transform));
+    mPImageArea->resize((mPImageArea->getImage()->rect().width()),
+                        (mPImageArea->getImage()->rect().height()));
+    mPImageArea->setEdited(true);
+    mPImageArea->clearSelection();
+    return true;
+}

@@ -97,6 +97,7 @@ public:
      * @param flag Rotate to left or to right.
      */
     void rotateImage(bool flag);
+    void rotateImage(int x,int y);
 
     inline QString getFileName() { return (mFilePath.isEmpty() ? mFilePath :
                                            mFilePath.split('/').last()); }
