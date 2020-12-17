@@ -3,6 +3,9 @@ MIT License
 
 Copyright (c) 2020 Maifee Ul Asad
 
+Copyright (c) 2012 EasyPaint https://github.com/Gr1N/EasyPaint
+
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -56,7 +59,7 @@ MainWindow::MainWindow(QStringList filePaths, QWidget *parent)
         resize(winSize);
     }
 
-    setWindowIcon(QIcon(":/media/logo/easypaint_64.png"));
+    setWindowIcon(QIcon(":/media/logo/josspaint_64.png"));
 
     mUndoStackGroup = new QUndoGroup(this);
 
@@ -137,7 +140,7 @@ void MainWindow::initializeNewTab(const bool &isOpen, const QString &filePath)
         connect(imageArea, &ImageArea::sendEnableCopyCutActions, this, &MainWindow::enableCopyCutActions);
         connect(imageArea, &ImageArea::sendEnableSelectionInstrument, this, &MainWindow::instumentsAct);
 
-        setWindowTitle(QString("%1 - EasyPaint").arg(fileName));
+        setWindowTitle(QString("%1 - JossPaint").arg(fileName));
     }
     else
     {
@@ -414,7 +417,7 @@ void MainWindow::initializeMainMenu()
 
     QMenu *aboutMenu = menuBar()->addMenu(tr("&About"));
 
-    QAction *aboutAction = new QAction(tr("&About EasyPaint"), this);
+    QAction *aboutAction = new QAction(tr("&About JossPaint"), this);
     aboutAction->setShortcut(QKeySequence::HelpContents);
     aboutAction->setIcon(QIcon::fromTheme("help-about", QIcon(":/media/actions-icons/help-about.png")));
     aboutAction->setIconVisibleInMenu(true);
@@ -486,11 +489,11 @@ void MainWindow::activateTab(const int &index)
 
     if(!getCurrentImageArea()->getFileName().isEmpty())
     {
-        setWindowTitle(QString("%1 - EasyPaint").arg(getCurrentImageArea()->getFileName()));
+        setWindowTitle(QString("%1 - JossPaint").arg(getCurrentImageArea()->getFileName()));
     }
     else
     {
-        setWindowTitle(QString("%1 - EasyPaint").arg(tr("Untitled Image")));
+        setWindowTitle(QString("%1 - JossPaint").arg(tr("Untitled Image")));
     }
     mUndoStackGroup->setActiveStack(getCurrentImageArea()->getUndoStack());
 }
@@ -601,7 +604,6 @@ void MainWindow::updateShortcuts()
     mInstrumentsActMap[CURSOR]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Cursor"));
     mInstrumentsActMap[ERASER]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Lastic"));
     mInstrumentsActMap[COLORPICKERPALETTE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Pipette"));
-    //todo : add short-cut for color picker widget
     mInstrumentsActMap[MAGNIFIER]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Loupe"));
     mInstrumentsActMap[PEN]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Pen"));
     mInstrumentsActMap[LINE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Line"));
@@ -696,7 +698,7 @@ void MainWindow::closeTab(int index)
     delete wid;
     if (mTabWidget->count() == 0)
     {
-        setWindowTitle("Empty - EasyPaint");
+        setWindowTitle("Empty - JossPaint");
     }
 }
 
@@ -774,11 +776,11 @@ void MainWindow::instumentsAct(bool state)
     QAction *currentAction = static_cast<QAction*>(sender());
     if(state)
     {
-        //todo : logic for new color picker palette
         if(currentAction == mInstrumentsActMap[COLORPICKERPALETTE] && !mPrevInstrumentSetted)
         {
             DataSingleton::Instance()->setPreviousInstrument(DataSingleton::Instance()->getInstrument());
             mPrevInstrumentSetted = true;
+            getCurrentImageArea()->colorpickerPaletteClicked();
         }
         setAllInstrumentsUnchecked(currentAction);
         currentAction->setChecked(true);
@@ -852,10 +854,10 @@ void MainWindow::setInstrument(InstrumentsEnum instrument)
 
 void MainWindow::helpAct()
 {
-    QMessageBox::about(this, tr("About EasyPaint"),
-                       QString("<b>EasyPaint</b> %1: %2 <br> <br> %3: "
-                               "<a href=\"https://github.com/Gr1N/EasyPaint/\">https://github.com/Gr1N/EasyPaint/</a>"
-                               "<br> <br>Copyright (c) 2012 EasyPaint team"
+    QMessageBox::about(this, tr("About JossPaint"),
+                       QString("<b>JossPaint</b> %1: %2 <br> <br> %3: "
+                               "<a href=\"https://github.com/maifeeulasad/Joss-Paint\">https://github.com/maifeeulasad/Joss-Paint</a>"
+                               "<br> <br>Copyright (c) 2020 JossPaint team"
                                "<br> <br>%4:<ul>"
                                "<li><a href=\"mailto:grin.minsk@gmail.com\">Nikita Grishko</a> (Gr1N)</li>"
                                "<li><a href=\"mailto:faulknercs@yandex.ru\">Artem Stepanyuk</a> (faulknercs)</li>"
@@ -864,5 +866,5 @@ void MainWindow::helpAct()
                                "</ul>"
                                "<br> %5")
                        .arg(tr("version")).arg("0.1.0").arg(tr("Site")).arg(tr("Authors"))
-                       .arg(tr("If you like <b>EasyPaint</b> and you want to share your opinion, or send a bug report, or want to suggest new features, we are waiting for you on our <a href=\"https://github.com/Gr1N/EasyPaint/issues?milestone=&sort=created&direction=desc&state=open\">tracker</a>.")));
+                       .arg(tr("If you like <b>JossPaint</b> and you want to share your opinion, or send a bug report, or want to suggest new features, we are waiting for you on our <a href=\"https://github.com/maifeeulasad/Joss-Paint/issues?milestone=&sort=created&direction=desc&state=open\">tracker</a>.")));
 }

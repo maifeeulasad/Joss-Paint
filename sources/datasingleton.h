@@ -3,6 +3,9 @@ MIT License
 
 Copyright (c) 2020 Maifee Ul Asad
 
+Copyright (c) 2012 EasyPaint https://github.com/Gr1N/EasyPaint
+
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -38,7 +41,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QList>
 #include <QColorDialog>
 
-#include "easypaintenums.h"
+#include "josspaintenums.h"
 
 /**
  * @brief Singleton for variables needed for the program.

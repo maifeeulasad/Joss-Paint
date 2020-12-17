@@ -29,30 +29,50 @@ GitHub repo : https://github.com/maifeeulasad/Paint
 A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 */
 
-#ifndef UNDOCOMMAND_H
-#define UNDOCOMMAND_H
-
-#include <QUndoCommand>
-#include <QImage>
-
-#include "imagearea.h"
+#ifndef JOSSPAINTENUMS_H
+#define JOSSPAINTENUMS_H
 
 /**
- * @brief Class which provides undo/redo actions
+ * @brief Enum with instruments names
  *
- * In future it should be changed according to architecture changing
  */
-class UndoCommand : public QUndoCommand
+typedef enum
 {
-public:
-    UndoCommand(const QImage* img, ImageArea &imgArea, QUndoCommand *parent = 0);
+    NONE_INSTRUMENT = 0,
+    PEN,
+    CURSOR,
+    ERASER,
+    LINE,
+    COLORPICKERPALETTE,
+    MAGNIFIER,
+    SPRAY,
+    FILL,
+    RECTANGLE,
+    ELLIPSE,
+    CURVELINE,
+    TEXT,
 
-    virtual void undo();
-    virtual void redo();
-private:
-    QImage mPrevImage;
-    QImage mCurrImage;
-    ImageArea& mImageArea;
-};
+    // Don't use it. (Used to know count of current instrument)
+    INSTRUMENTS_COUNT
+} InstrumentsEnum;
 
-#endif // UNDOCOMMAND_H
+/**
+ * @brief Enum with effects names
+ *
+ */
+typedef enum
+{
+    NONE_EFFECT = 0,
+    NEGATIVE,
+    GRAY,
+    BINARIZATION,
+    GAUSSIANBLUR,
+    GAMMA,
+    SHARPEN,
+    CUSTOM,
+
+    // Don't use it. (Used to know count of current instrument)
+    EFFECTS_COUNT
+} EffectsEnum;
+
+#endif // JOSSPAINTENUMS_H
