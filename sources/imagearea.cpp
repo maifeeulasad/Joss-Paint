@@ -76,6 +76,10 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *parent) :
     QWidget(parent), mIsEdited(false), mIsPaint(false), mIsResize(false)
 {
+    _mIsOpen = isOpen;
+    _mFilePath = filePath;
+    _mParent = parent;
+
     setMouseTracking(true);
 
     mRightButtonPressed = false;
@@ -167,6 +171,12 @@ ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *paren
     mEffectsHandlers[CUSTOM] = new CustomEffect(this);
 }
 
+
+ImageArea::ImageArea(ImageArea &imageArea)
+    : ImageArea(imageArea._mIsOpen,imageArea._mFilePath,imageArea._mParent){
+
+}
+
 ImageArea::~ImageArea()
 {
 
@@ -176,6 +186,7 @@ void ImageArea::initializeImage()
 {
     mImage = new QImage(DataSingleton::Instance()->getBaseSize(),
                         QImage::Format_ARGB32_Premultiplied);
+    mOriginalImage = *mImage;
 }
 
 void ImageArea::open()
@@ -212,6 +223,7 @@ void ImageArea::open(const QString &filePath)
         resize(mImage->rect().right() + 6,
                mImage->rect().bottom() + 6);
         QApplication::restoreOverrideCursor();
+        mOriginalImage = *mImage;
     }
     else
     {
@@ -231,6 +243,7 @@ bool ImageArea::save()
     if (!mImage->save(mFilePath))
     {
         QMessageBox::warning(this, tr("Error saving file"), tr("Can't save file \"%1\".").arg(mFilePath));
+        mOriginalImage = *mImage;
         return false;
     }
     mIsEdited = false;

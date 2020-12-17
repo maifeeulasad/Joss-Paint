@@ -42,9 +42,9 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QApplication>
 
 AdditionalTools::AdditionalTools(ImageArea *pImageArea, QObject *parent) :
-    QObject(parent)
-{
+    QObject(parent){
     mPImageArea = pImageArea;
+    //mPOriginalImageArea = new ImageArea(*pImageArea);
     mZoomedFactor = 1;
 }
 
@@ -133,7 +133,7 @@ bool AdditionalTools::zoomImage(qreal factor)
     }
     else
     {
-        mPImageArea->setImage(mPImageArea->getImage()->transformed(QTransform::fromScale(factor, factor)));
+        mPImageArea->setImage(mPImageArea->getOriginalImage().transformed(QTransform::fromScale(factor, factor)));
         mPImageArea->resize((mPImageArea->rect().width())*factor, (mPImageArea->rect().height())*factor);
         emit sendNewImageSize(mPImageArea->size());
         mPImageArea->setEdited(true);

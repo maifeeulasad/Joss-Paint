@@ -63,6 +63,12 @@ public:
      * @param parent Pointer for parent.
      */
     explicit ImageArea(const bool &isOpen, const QString &filePath, QWidget *parent);
+    /**
+     * @brief Constructor
+     *
+     * @param imageArea just another ImageArea pointer location.
+     */
+    explicit ImageArea(ImageArea &imageArea);
     ~ImageArea();
 
     /**
@@ -101,6 +107,7 @@ public:
     inline QString getFileName() { return (mFilePath.isEmpty() ? mFilePath :
                                            mFilePath.split('/').last()); }
     inline QImage* getImage() { return mImage; }
+    inline QImage getOriginalImage() { return mOriginalImage; }
     inline void setImage(const QImage &image) { *mImage = image; }
     /**
      * @brief Set flag which shows that image edited.
@@ -205,9 +212,13 @@ private:
     void makeFormatsFilters();
 
     QImage *mImage,  /**< Main image. */
-           mImageCopy; /**< Copy of main image, need for events. */ // ?????????????
+        mImageCopy, /**< Copy of main image, need for events. */ // ?????????????
+        mOriginalImage; /**< Copy of main image, need for events. */ // ?????????????
     AdditionalTools *mAdditionalTools;
     QString mFilePath; /**< Path where located image. */
+    QString _mFilePath; /**< filePath @param passed in constructor. */
+    QWidget *_mParent; /**< parent @param passed in constructor. */
+    bool _mIsOpen; /**< isOpen @param passed in constructor. */
     QString mOpenFilter; /**< Supported open formats filter. */
     QString mSaveFilter; /**< Supported save formats filter. */
     bool mIsEdited, mIsPaint, mIsResize, mRightButtonPressed;
