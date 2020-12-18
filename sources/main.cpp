@@ -34,6 +34,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QTranslator>
+#include <QStyleFactory>
 
 #include "mainwindow.h"
 #include "datasingleton.h"
@@ -57,6 +58,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName("Paint");
     a.setApplicationVersion("0.1.1");
+    a.setStyle(QStyleFactory::create("Macintosh"));
 
     QStringList args = a.arguments();
 
