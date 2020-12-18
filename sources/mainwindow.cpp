@@ -153,31 +153,31 @@ void MainWindow::initializeMainMenu()
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
 
     mNewAction = new QAction(tr("&New"), this);
-    mNewAction->setIcon(QIcon::fromTheme("document-new"));
+    mNewAction->setIcon(QIcon::fromTheme("document-new", QIcon(":/media/actions-icons/document-new.png")));
     mNewAction->setIconVisibleInMenu(true);
     connect(mNewAction, &QAction::triggered, this, &MainWindow::newAct);
     fileMenu->addAction(mNewAction);
 
     mOpenAction = new QAction(tr("&Open"), this);
-    mOpenAction->setIcon(QIcon::fromTheme("document-open"));
+    mOpenAction->setIcon(QIcon::fromTheme("document-open", QIcon(":/media/actions-icons/document-open.png")));
     mOpenAction->setIconVisibleInMenu(true);
     connect(mOpenAction, &QAction::triggered, this, &MainWindow::openAct);
     fileMenu->addAction(mOpenAction);
 
     mSaveAction = new QAction(tr("&Save"), this);
-    mSaveAction->setIcon(QIcon::fromTheme("document-save"));
+    mSaveAction->setIcon(QIcon::fromTheme("document-save", QIcon(":/media/actions-icons/document-save.png")));
     mSaveAction->setIconVisibleInMenu(true);
     connect(mSaveAction, &QAction::triggered, this, &MainWindow::saveAct);
     fileMenu->addAction(mSaveAction);
 
     mSaveAsAction = new QAction(tr("Save as..."), this);
-    mSaveAsAction->setIcon(QIcon::fromTheme("document-save-as"));
+    mSaveAsAction->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/media/actions-icons/document-save-as.png")));
     mSaveAsAction->setIconVisibleInMenu(true);
     connect(mSaveAsAction, &QAction::triggered, this, &MainWindow::saveAsAct);
     fileMenu->addAction(mSaveAsAction);
 
     mCloseAction = new QAction(tr("&Close"), this);
-    mCloseAction->setIcon(QIcon::fromTheme("window-close"));
+    mCloseAction->setIcon(QIcon::fromTheme("window-close", QIcon(":/media/actions-icons/window-close.png")));
     mCloseAction->setIconVisibleInMenu(true);
     connect(mCloseAction, &QAction::triggered, this, &MainWindow::closeTabAct);
     fileMenu->addAction(mCloseAction);
@@ -185,7 +185,7 @@ void MainWindow::initializeMainMenu()
     fileMenu->addSeparator();
 
     mPrintAction = new QAction(tr("&Print"), this);
-    mPrintAction->setIcon(QIcon::fromTheme("document-print"));
+    mPrintAction->setIcon(QIcon::fromTheme("document-print", QIcon(":/media/actions-icons/document-print.png")));
     mPrintAction->setIconVisibleInMenu(true);
     connect(mPrintAction, &QAction::triggered, this, &MainWindow::printAct);
     fileMenu->addAction(mPrintAction);
@@ -193,7 +193,7 @@ void MainWindow::initializeMainMenu()
     fileMenu->addSeparator();
 
     mExitAction = new QAction(tr("&Exit"), this);
-    mExitAction->setIcon(QIcon::fromTheme("application-exit"));
+    mExitAction->setIcon(QIcon::fromTheme("application-exit", QIcon(":/media/actions-icons/application-exit.png")));
     mExitAction->setIconVisibleInMenu(true);
     connect(mExitAction, &QAction::triggered, this, &QWidget::close);
     fileMenu->addAction(mExitAction);
@@ -201,13 +201,13 @@ void MainWindow::initializeMainMenu()
     QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
 
     mUndoAction = mUndoStackGroup->createUndoAction(this, tr("&Undo"));
-    mUndoAction->setIcon(QIcon::fromTheme("edit-undo"));
+    mUndoAction->setIcon(QIcon::fromTheme("edit-undo", QIcon(":/media/actions-icons/edit-undo.png")));
     mUndoAction->setIconVisibleInMenu(true);
     mUndoAction->setEnabled(false);
     editMenu->addAction(mUndoAction);
 
     mRedoAction = mUndoStackGroup->createRedoAction(this, tr("&Redo"));
-    mRedoAction->setIcon(QIcon::fromTheme("edit-redo"));
+    mRedoAction->setIcon(QIcon::fromTheme("edit-redo", QIcon(":/media/actions-icons/edit-redo.png")));
     mRedoAction->setIconVisibleInMenu(true);
     mRedoAction->setEnabled(false);
     editMenu->addAction(mRedoAction);
@@ -215,20 +215,20 @@ void MainWindow::initializeMainMenu()
     editMenu->addSeparator();
 
     mCopyAction = new QAction(tr("&Copy"), this);
-    mCopyAction->setIcon(QIcon::fromTheme("edit-copy"));
+    mCopyAction->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/media/actions-icons/edit-copy.png")));
     mCopyAction->setIconVisibleInMenu(true);
     mCopyAction->setEnabled(false);
     connect(mCopyAction, &QAction::triggered, this, &MainWindow::copyAct);
     editMenu->addAction(mCopyAction);
 
     mPasteAction = new QAction(tr("&Paste"), this);
-    mPasteAction->setIcon(QIcon::fromTheme("edit-paste"));
+    mPasteAction->setIcon(QIcon::fromTheme("edit-paste", QIcon(":/media/actions-icons/edit-paste.png")));
     mPasteAction->setIconVisibleInMenu(true);
     connect(mPasteAction, &QAction::triggered, this, &MainWindow::pasteAct);
     editMenu->addAction(mPasteAction);
 
     mCutAction = new QAction(tr("C&ut"), this);
-    mCutAction->setIcon(QIcon::fromTheme("edit-cut"));
+    mCutAction->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/media/actions-icons/edit-cut.png")));
     mCutAction->setIconVisibleInMenu(true);
     mCutAction->setEnabled(false);
     connect(mCutAction, &QAction::triggered, this, &MainWindow::cutAct);
@@ -238,7 +238,7 @@ void MainWindow::initializeMainMenu()
 
     QAction *settingsAction = new QAction(tr("&Settings"), this);
     settingsAction->setShortcut(QKeySequence::Preferences);
-    settingsAction->setIcon(QIcon::fromTheme("document-properties"));
+    settingsAction->setIcon(QIcon::fromTheme("document-properties", QIcon(":/media/actions-icons/document-properties.png")));
     settingsAction->setIconVisibleInMenu(true);
     connect(settingsAction, &QAction::triggered, this, &MainWindow::settingsAct);
     editMenu->addAction(settingsAction);
@@ -247,84 +247,84 @@ void MainWindow::initializeMainMenu()
 
     QAction *mCursorAction = new QAction(tr("Selection"), this);
     mCursorAction->setCheckable(true);
-    mCursorAction->setIcon(QIcon::fromTheme("select-rectangular"));
+    mCursorAction->setIcon(QIcon::fromTheme("select-rectangular", QIcon(":/media/instruments-icons/cursor.png")));
     connect(mCursorAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mCursorAction);
     mInstrumentsActMap.insert(CURSOR, mCursorAction);
 
     QAction *mEraserAction = new QAction(tr("Eraser"), this);
     mEraserAction->setCheckable(true);
-    mEraserAction->setIcon(QIcon::fromTheme("tool_eraser"));
+    mEraserAction->setIcon(QIcon::fromTheme("tool_eraser", QIcon(":/media/instruments-icons/lastic.png")));
     connect(mEraserAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mEraserAction);
     mInstrumentsActMap.insert(ERASER, mEraserAction);
 
     QAction *mColorPickerPaletteAction = new QAction(tr("Color picker palette"), this);
     mColorPickerPaletteAction->setCheckable(true);
-    mColorPickerPaletteAction->setIcon(QIcon(":/media/instruments-icons/palette.png"));
+    mColorPickerPaletteAction->setIcon(QIcon::fromTheme("color-management", QIcon(":/media/instruments-icons/palette.png")));
     connect(mColorPickerPaletteAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mColorPickerPaletteAction);
     mInstrumentsActMap.insert(COLORPICKERPALETTE, mColorPickerPaletteAction);
 
     QAction *mMagnifierAction = new QAction(tr("Magnifier"), this);
     mMagnifierAction->setCheckable(true);
-    mMagnifierAction->setIcon(QIcon(":/media/instruments-icons/loupe.png"));
+    mMagnifierAction->setIcon(QIcon::fromTheme("zoom", QIcon(":/media/instruments-icons/loupe.png")));
     connect(mMagnifierAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mMagnifierAction);
     mInstrumentsActMap.insert(MAGNIFIER, mMagnifierAction);
 
     QAction *mPenAction = new QAction(tr("Pen"), this);
     mPenAction->setCheckable(true);
-    mPenAction->setIcon(QIcon(":/media/instruments-icons/pencil.png"));
+    mPenAction->setIcon(QIcon::fromTheme("tool_pen", QIcon(":/media/instruments-icons/pencil.png")));
     connect(mPenAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mPenAction);
     mInstrumentsActMap.insert(PEN, mPenAction);
 
     QAction *mLineAction = new QAction(tr("Line"), this);
     mLineAction->setCheckable(true);
-    mLineAction->setIcon(QIcon(":/media/instruments-icons/line.png"));
+    mLineAction->setIcon(QIcon::fromTheme("tool_line", QIcon(":/media/instruments-icons/line.png")));
     connect(mLineAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mLineAction);
     mInstrumentsActMap.insert(LINE, mLineAction);
 
     QAction *mSprayAction = new QAction(tr("Spray"), this);
     mSprayAction->setCheckable(true);
-    mSprayAction->setIcon(QIcon(":/media/instruments-icons/spray.png"));
+    mSprayAction->setIcon(QIcon::fromTheme("tool_spraycan", QIcon(":/media/instruments-icons/spray.png")));
     connect(mSprayAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mSprayAction);
     mInstrumentsActMap.insert(SPRAY, mSprayAction);
 
     QAction *mFillAction = new QAction(tr("Fill"), this);
     mFillAction->setCheckable(true);
-    mFillAction->setIcon(QIcon(":/media/instruments-icons/fill.png"));
+    mFillAction->setIcon(QIcon::fromTheme("color-fill", QIcon(":/media/instruments-icons/fill.png")));
     connect(mFillAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mFillAction);
     mInstrumentsActMap.insert(FILL, mFillAction);
 
     QAction *mRectangleAction = new QAction(tr("Rectangle"), this);
     mRectangleAction->setCheckable(true);
-    mRectangleAction->setIcon(QIcon(":/media/instruments-icons/rectangle.png"));
+    mRectangleAction->setIcon(QIcon::fromTheme("tool_rectangle", QIcon(":/media/instruments-icons/rectangle.png")));
     connect(mRectangleAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mRectangleAction);
     mInstrumentsActMap.insert(RECTANGLE, mRectangleAction);
 
     QAction *mEllipseAction = new QAction(tr("Ellipse"), this);
     mEllipseAction->setCheckable(true);
-    mEllipseAction->setIcon(QIcon(":/media/instruments-icons/ellipse.png"));
+    mEllipseAction->setIcon(QIcon::fromTheme("tool_ellipse", QIcon(":/media/instruments-icons/ellipse.png")));
     connect(mEllipseAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mEllipseAction);
     mInstrumentsActMap.insert(ELLIPSE, mEllipseAction);
 
     QAction *curveLineAction = new QAction(tr("Curve"), this);
     curveLineAction->setCheckable(true);
-    curveLineAction->setIcon(QIcon(":/media/instruments-icons/curve.png"));
+    curveLineAction->setIcon(QIcon::fromTheme("tool_curve", QIcon(":/media/instruments-icons/curve.png")));
     connect(curveLineAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(curveLineAction);
     mInstrumentsActMap.insert(CURVELINE, curveLineAction);
 
     QAction *mTextAction = new QAction(tr("Text"), this);
     mTextAction->setCheckable(true);
-    mTextAction->setIcon(QIcon(":/media/instruments-icons/text.png"));
+    mTextAction->setIcon(QIcon::fromTheme("tool-text", QIcon(":/media/instruments-icons/text.png")));
     connect(mTextAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mTextAction);
     mInstrumentsActMap.insert(TEXT, mTextAction);
