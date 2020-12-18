@@ -71,6 +71,7 @@ void ToolBar::initializeItems()
     mEllipseButton = createToolButton(mActMap[ELLIPSE]);
     mCurveButton = createToolButton(mActMap[CURVELINE]);
     mTextButton = createToolButton(mActMap[TEXT]);
+    mCropButton = createToolButton(mActMap[CROP]);
 
     QGridLayout *bLayout = new QGridLayout();
     bLayout->setMargin(3);
@@ -86,6 +87,7 @@ void ToolBar::initializeItems()
     bLayout->addWidget(mEllipseButton, 4, 1);
     bLayout->addWidget(mCurveButton, 5, 0);
     bLayout->addWidget(mTextButton, 5, 1);
+    bLayout->addWidget(mCropButton, 6, 0);
 
     QWidget *bWidget = new QWidget();
     bWidget->setLayout(bLayout);

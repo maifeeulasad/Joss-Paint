@@ -46,6 +46,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include "instruments/selectioninstrument.h"
 #include "instruments/curvelineinstrument.h"
 #include "instruments/textinstrument.h"
+#include "instruments/cropinstrument.h"
 #include "dialogs/resizedialog.h"
 
 #include "effects/abstracteffect.h"
@@ -155,6 +156,7 @@ ImageArea::ImageArea(const bool &isOpen, const QString &filePath, QWidget *paren
     mInstrumentsHandlers[COLORPICKERPALETTE] = new ColorpickerPaletteInstrument(this);
     mInstrumentsHandlers[CURVELINE] = new CurveLineInstrument(this);
     mInstrumentsHandlers[TEXT] = new TextInstrument(this);
+    mInstrumentsHandlers[CROP] = new CropInstrument(this);
 
     // Effects handlers
     mEffectsHandlers.fill(0, (int)EFFECTS_COUNT);
@@ -506,6 +508,8 @@ void ImageArea::restoreCursor()
         mCurrentCursor = new QCursor(*mPixmap);
         setCursor(*mCurrentCursor);
         break;
+    case CROP:
+        break;
     }
 }
 
@@ -516,7 +520,7 @@ void ImageArea::drawCursor()
     QPoint center(13, 13);
     switch(DataSingleton::Instance()->getInstrument())
     {
-    case NONE_INSTRUMENT: case LINE: case COLORPICKERPALETTE: case MAGNIFIER: case  SPRAY:
+    case NONE_INSTRUMENT: case LINE: case COLORPICKERPALETTE: case MAGNIFIER: case  SPRAY: case CROP:
     case FILL: case RECTANGLE: case ELLIPSE: case CURSOR: case INSTRUMENTS_COUNT:
     case CURVELINE: case TEXT:
         break;
@@ -528,7 +532,7 @@ void ImageArea::drawCursor()
     switch(DataSingleton::Instance()->getInstrument())
     {
     case NONE_INSTRUMENT: case LINE: case COLORPICKERPALETTE: case MAGNIFIER: case  SPRAY:
-    case FILL: case RECTANGLE: case ELLIPSE: case CURSOR: case INSTRUMENTS_COUNT:
+    case FILL: case RECTANGLE: case ELLIPSE: case CURSOR: case INSTRUMENTS_COUNT: case CROP:
     case CURVELINE: case TEXT:
         break;
     case PEN:

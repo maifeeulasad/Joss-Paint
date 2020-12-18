@@ -96,7 +96,7 @@ void DataSingleton::readSetting()
     mInstrumentsShortcuts.insert("Ellipse", settings.value("/Shortcuts/Instruments/Ellipse", "Ctrl+0").value<QKeySequence>());
     mInstrumentsShortcuts.insert("Curve", settings.value("/Shortcuts/Instruments/Curve", "").value<QKeySequence>());
     mInstrumentsShortcuts.insert("Text", settings.value("/Shortcuts/Instruments/Text", "").value<QKeySequence>());
-    // TODO: Add shortcuts for new instruments here
+    mInstrumentsShortcuts.insert("Crop", settings.value("/Shortcuts/Instruments/Crop", "").value<QKeySequence>());
 
     //read shortcuts for tools menu
     mToolsShortcuts.insert("ZoomIn", settings.value("/Shortcuts/Tools/Zoom/ZoomIn", QKeySequence(QKeySequence::ZoomIn)).value<QKeySequence>());
@@ -141,6 +141,7 @@ void DataSingleton::writeSettings()
     settings.setValue("/Shortcuts/Instruments/Fill", mInstrumentsShortcuts["Fill"]);
     settings.setValue("/Shortcuts/Instruments/Rect", mInstrumentsShortcuts["Rect"]);
     settings.setValue("/Shortcuts/Instruments/Ellipse", mInstrumentsShortcuts["Ellipse"]);
+    settings.setValue("/Shortcuts/Instruments/Crop", mInstrumentsShortcuts["Crop"]);
 
     //write shortcuts for tools menu
     settings.setValue("/Shortcuts/Tools/Zoom/ZoomIn", mToolsShortcuts["ZoomIn"]);

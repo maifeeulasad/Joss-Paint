@@ -51,6 +51,7 @@ typedef enum
     ELLIPSE,
     CURVELINE,
     TEXT,
+    CROP,
 
     // Don't use it. (Used to know count of current instrument)
     INSTRUMENTS_COUNT

@@ -333,6 +333,13 @@ void MainWindow::initializeMainMenu()
     mInstrumentsMenu->addAction(mTextAction);
     mInstrumentsActMap.insert(TEXT, mTextAction);
 
+    QAction *mCropAction = new QAction(tr("Crop"), this);
+    mCropAction->setCheckable(true);
+    mCropAction->setIcon(QIcon::fromTheme("tool-crop", QIcon(":/media/instruments-icons/crop.png")));
+    connect(mCropAction, &QAction::triggered, this, &MainWindow::instumentsAct);
+    mInstrumentsMenu->addAction(mCropAction);
+    mInstrumentsActMap.insert(CROP, mCropAction);
+
     // TODO: Add new instrument action here
 
     mEffectsMenu = menuBar()->addMenu(tr("E&ffects"));
@@ -634,7 +641,7 @@ void MainWindow::updateShortcuts()
     mInstrumentsActMap[ELLIPSE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Ellipse"));
     mInstrumentsActMap[CURVELINE]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Curve"));
     mInstrumentsActMap[TEXT]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Text"));
-    // TODO: Add new instruments' shorcuts here
+    mInstrumentsActMap[CROP]->setShortcut(DataSingleton::Instance()->getInstrumentShortcutByKey("Crop"));
 
     mZoomInAction->setShortcut(DataSingleton::Instance()->getToolShortcutByKey("ZoomIn"));
     mZoomOutAction->setShortcut(DataSingleton::Instance()->getToolShortcutByKey("ZoomOut"));
