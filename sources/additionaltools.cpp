@@ -153,6 +153,7 @@ bool AdditionalTools::rotateImage(int x, int y,int z)
     mPImageArea->setImage(mPImageArea->getImage()->transformed(transform));
     mPImageArea->resize((mPImageArea->getImage()->rect().width()),
                         (mPImageArea->getImage()->rect().height()));
+    mPImageArea->update();
     mPImageArea->setEdited(true);
     mPImageArea->clearSelection();
     return true;

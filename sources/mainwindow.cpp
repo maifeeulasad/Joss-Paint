@@ -673,14 +673,14 @@ void MainWindow::rotateImageAct()
 
 void MainWindow::flipVerticalAct()
 {
-    mRotX += 180;
-    getCurrentImageArea()->rotateImage(mRotX,mRotY,mRotZ);
+    //mRotX += 180;
+    getCurrentImageArea()->rotateImage(180,0,0);
 }
 
 void MainWindow::flipHorizontalAct()
 {
-    mRotY += 180;
-    getCurrentImageArea()->rotateImage(mRotX,mRotY,mRotZ);
+    //mRotY += 180;
+    getCurrentImageArea()->rotateImage(0,180,0);
 }
 
 void MainWindow::zoomInAct()
