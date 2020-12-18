@@ -380,6 +380,11 @@ void ImageArea::cutImage()
     instrument->cutImage(*this);
 }
 
+void ImageArea::cropImage()
+{
+    SelectionInstrument *instrument = static_cast <SelectionInstrument*> (mInstrumentsHandlers.at(CURSOR));
+    instrument->cropImage(*this);
+}
 void ImageArea::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton &&

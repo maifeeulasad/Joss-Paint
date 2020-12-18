@@ -106,7 +106,7 @@ private:
     QMap<InstrumentsEnum, QAction*> mInstrumentsActMap;
     QMap<EffectsEnum, QAction*> mEffectsActMap;
     QAction *mSaveAction, *mSaveAsAction, *mCloseAction, *mPrintAction,
-            *mUndoAction, *mRedoAction, *mCopyAction, *mCutAction,
+            *mUndoAction, *mRedoAction, *mCopyAction, *mCutAction, *mCropAction,
             *mNewAction, *mOpenAction, *mExitAction, *mPasteAction, *mZoomInAction, *mZoomOutAction;
     QMenu *mInstrumentsMenu, *mEffectsMenu, *mToolsMenu;
     QUndoGroup *mUndoStackGroup;
@@ -128,6 +128,7 @@ private slots:
     void copyAct();
     void pasteAct();
     void cutAct();
+    void cropAct();
     void settingsAct();
     void effectsAct();
     void resizeImageAct();
