@@ -85,9 +85,11 @@ public:
      * @return returns true in case of success
      */
     bool zoomImage(qreal factor);
+    bool rotateImage(int x,int y);
     
 private:
     ImageArea *mPImageArea; /**< A pointer to ImageArea */
+    ImageArea *mPOriginalImageArea; /**< A pointer to ImageArea */
     qreal mZoomedFactor; /**< Difference between original and current image */
 
 signals:

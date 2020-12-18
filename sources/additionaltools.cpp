@@ -42,9 +42,9 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QApplication>
 
 AdditionalTools::AdditionalTools(ImageArea *pImageArea, QObject *parent) :
-    QObject(parent)
-{
+    QObject(parent){
     mPImageArea = pImageArea;
+    //mPOriginalImageArea = new ImageArea(*pImageArea);
     mZoomedFactor = 1;
 }
 
@@ -133,11 +133,24 @@ bool AdditionalTools::zoomImage(qreal factor)
     }
     else
     {
-        mPImageArea->setImage(mPImageArea->getImage()->transformed(QTransform::fromScale(factor, factor)));
-        mPImageArea->resize((mPImageArea->rect().width())*factor, (mPImageArea->rect().height())*factor);
-        emit sendNewImageSize(mPImageArea->size());
+        QImage temImage = mPImageArea->getOriginalImage().transformed(QTransform::fromScale(factor, factor));
+        mPImageArea->setImage(temImage);
+        mPImageArea->resize((temImage.rect().width()),
+                            (temImage.rect().height()));
+        emit sendNewImageSize(temImage.size());
         mPImageArea->setEdited(true);
         mPImageArea->clearSelection();
         return true;
     }
+}
+
+bool AdditionalTools::rotateImage(int x, int y)
+{
+    QTransform transform = QTransform().rotate(x, Qt::Axis::XAxis).rotate(y, Qt::Axis::YAxis);
+    mPImageArea->setImage(mPImageArea->getImage()->transformed(transform));
+    mPImageArea->resize((mPImageArea->getImage()->rect().width()),
+                        (mPImageArea->getImage()->rect().height()));
+    mPImageArea->setEdited(true);
+    mPImageArea->clearSelection();
+    return true;
 }
