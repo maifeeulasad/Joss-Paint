@@ -341,9 +341,10 @@ void ImageArea::rotateImage(bool flag)
     emit sendNewImageSize(mImage->size());
 }
 
-void ImageArea::rotateImage(int x,int y)
+void ImageArea::rotateImage(int x,int y,int z)
 {
-    mAdditionalTools->rotateImage(x,y);
+    mAdditionalTools->rotateImage(x,y,z);
+    emit sendNewImageSize(mImage->size());
 }
 
 void ImageArea::applyEffect(EffectsEnum effect)
@@ -424,7 +425,6 @@ void ImageArea::mouseMoveEvent(QMouseEvent *event)
 
     if(instrument != NONE_INSTRUMENT)
     {
-        //todo : fix segmentation-fault in color picker palette
         mInstrumentHandler->mouseMoveEvent(event, *this);
     }
 }

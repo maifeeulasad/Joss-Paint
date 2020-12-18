@@ -85,7 +85,7 @@ public:
      * @return returns true in case of success
      */
     bool zoomImage(qreal factor);
-    bool rotateImage(int x,int y);
+    bool rotateImage(int x,int y,int z);
     
 private:
     ImageArea *mPImageArea; /**< A pointer to ImageArea */

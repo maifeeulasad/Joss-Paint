@@ -144,9 +144,12 @@ bool AdditionalTools::zoomImage(qreal factor)
     }
 }
 
-bool AdditionalTools::rotateImage(int x, int y)
+bool AdditionalTools::rotateImage(int x, int y,int z)
 {
-    QTransform transform = QTransform().rotate(x, Qt::Axis::XAxis).rotate(y, Qt::Axis::YAxis);
+    QTransform transform = QTransform()
+            .rotate(x, Qt::Axis::XAxis)
+            .rotate(y, Qt::Axis::YAxis)
+            .rotate(z,Qt::Axis::ZAxis);
     mPImageArea->setImage(mPImageArea->getImage()->transformed(transform));
     mPImageArea->resize((mPImageArea->getImage()->rect().width()),
                         (mPImageArea->getImage()->rect().height()));

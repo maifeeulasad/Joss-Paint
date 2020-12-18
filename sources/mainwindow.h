@@ -111,6 +111,7 @@ private:
     QMenu *mInstrumentsMenu, *mEffectsMenu, *mToolsMenu;
     QUndoGroup *mUndoStackGroup;
     bool mPrevInstrumentSetted; /**< Used for magnifier */
+    int mRotX,mRotY,mRotZ;
 private slots:
     void activateTab(const int &index);
     void setNewSizeToSizeLabel(const QSize &size);
@@ -133,6 +134,9 @@ private slots:
     void resizeCanvasAct();
     void rotateLeftImageAct();
     void rotateRightImageAct();
+    void rotateImageAct();
+    void flipVerticalAct();
+    void flipHorizontalAct();
     void zoomInAct();
     void zoomOutAct();
     void advancedZoomAct();

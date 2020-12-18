@@ -54,6 +54,10 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 MainWindow::MainWindow(QStringList filePaths, QWidget *parent)
     : QMainWindow(parent), mPrevInstrumentSetted(false)
 {
+    mRotX = 0;
+    mRotY = 0;
+    mRotZ = 0;
+
     QSize winSize = DataSingleton::Instance()->getWindowSize();
     if (DataSingleton::Instance()->getIsRestoreWindowSize() &&  winSize.isValid()) {
         resize(winSize);
@@ -394,6 +398,23 @@ void MainWindow::initializeMainMenu()
 
     mToolsMenu->addMenu(rotateMenu);
 
+    QMenu *flipMenu = new QMenu(tr("Flip"));
+
+    QAction *flipVAction = new QAction(tr("Vertically"), this);
+    flipVAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/media/actions-icons/object-rotate-left.png")));
+    flipVAction->setIconVisibleInMenu(true);
+    connect(flipVAction, &QAction::triggered, this, &MainWindow::flipVerticalAct);
+    flipMenu->addAction(flipVAction);
+
+    QAction *flipHAction = new QAction(tr("Horizontally"), this);
+    flipHAction->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/media/actions-icons/object-rotate-right.png")));
+    flipHAction->setIconVisibleInMenu(true);
+    connect(flipHAction, &QAction::triggered, this, &MainWindow::flipHorizontalAct);
+    flipMenu->addAction(flipHAction);
+
+    mToolsMenu->addMenu(flipMenu);
+
+
     QMenu *zoomMenu = new QMenu(tr("Zoom"));
 
     mZoomInAction = new QAction(tr("Zoom In"), this);
@@ -645,7 +666,22 @@ void MainWindow::rotateRightImageAct()
     getCurrentImageArea()->rotateImage(true);
 }
 
-//todo : rotate degree input, or options
+void MainWindow::rotateImageAct()
+{
+    getCurrentImageArea()->rotateImage(mRotX,mRotY,mRotZ);
+}
+
+void MainWindow::flipVerticalAct()
+{
+    mRotX += 180;
+    getCurrentImageArea()->rotateImage(mRotX,mRotY,mRotZ);
+}
+
+void MainWindow::flipHorizontalAct()
+{
+    mRotY += 180;
+    getCurrentImageArea()->rotateImage(mRotX,mRotY,mRotZ);
+}
 
 void MainWindow::zoomInAct()
 {
