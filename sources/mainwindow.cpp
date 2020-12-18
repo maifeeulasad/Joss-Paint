@@ -401,13 +401,13 @@ void MainWindow::initializeMainMenu()
     QMenu *flipMenu = new QMenu(tr("Flip"));
 
     QAction *flipVAction = new QAction(tr("Vertically"), this);
-    flipVAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/media/actions-icons/object-rotate-left.png")));
+    flipVAction->setIcon(QIcon::fromTheme("object-flip-vertical", QIcon(":/media/actions-icons/object-flip-vertical.png")));
     flipVAction->setIconVisibleInMenu(true);
     connect(flipVAction, &QAction::triggered, this, &MainWindow::flipVerticalAct);
     flipMenu->addAction(flipVAction);
 
     QAction *flipHAction = new QAction(tr("Horizontally"), this);
-    flipHAction->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/media/actions-icons/object-rotate-right.png")));
+    flipHAction->setIcon(QIcon::fromTheme("object-flip-horizontal", QIcon(":/media/actions-icons/object-flip-horizontal.png")));
     flipHAction->setIconVisibleInMenu(true);
     connect(flipHAction, &QAction::triggered, this, &MainWindow::flipHorizontalAct);
     flipMenu->addAction(flipHAction);
