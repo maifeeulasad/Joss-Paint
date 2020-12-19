@@ -82,6 +82,7 @@ void DataSingleton::readSetting()
     mEditShortcuts.insert("Copy", settings.value("/Shortcuts/Edit/Copy", QKeySequence(QKeySequence::Copy)).value<QKeySequence>());
     mEditShortcuts.insert("Paste", settings.value("/Shortcuts/Edit/Paste", QKeySequence(QKeySequence::Paste)).value<QKeySequence>());
     mEditShortcuts.insert("Cut", settings.value("/Shortcuts/Edit/Cut", QKeySequence(QKeySequence::Cut)).value<QKeySequence>());
+    mEditShortcuts.insert("Crop", settings.value("/Shortcuts/Edit/Crop", QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_X)).value<QKeySequence>());
 
     //read shortcuts for instruments menu
     mInstrumentsShortcuts.insert("Cursor", settings.value("/Shortcuts/Instruments/Cursor", "Ctrl+1").value<QKeySequence>());

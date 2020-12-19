@@ -157,6 +157,7 @@ public:
      *
      */
     void cutImage();
+    void cropImage();
     /**
      * @brief Save all image changes to image copy.
      *

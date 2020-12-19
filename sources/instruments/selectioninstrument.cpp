@@ -91,6 +91,17 @@ void SelectionInstrument::cutImage(ImageArea &imageArea)
     }
 }
 
+void SelectionInstrument::cropImage(ImageArea &imageArea)
+{
+    QImage cropArea = imageArea.getImage()->copy(mTopLeftPoint.x(), mTopLeftPoint.y(), mWidth, mHeight);
+    makeUndoCommand(imageArea);
+    imageArea.setImage(cropArea);
+    imageArea.update();
+    mIsSelectionExists = false;
+    imageArea.restoreCursor();
+    emit sendEnableCopyCutActions(false);
+}
+
 void SelectionInstrument::pasteImage(ImageArea &imageArea)
 {
     QClipboard *globalClipboard = QApplication::clipboard();
