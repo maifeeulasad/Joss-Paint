@@ -40,14 +40,14 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 ColorChooser::ColorChooser(const int &r, const int &g, const int &b, QWidget *parent) :
     QLabel(parent)
 {
-    setFrameStyle(QFrame::Raised | QFrame::Box);
+    setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     mCurrentColor = new QColor(r, g, b);
     mPixmapColor = new QPixmap(20, 20);
     mPainterColor = new QPainter(mPixmapColor);
     mPainterColor->fillRect(0, 0, 20, 20, *mCurrentColor);
     mPainterColor->end();
     setMargin(3);
-    setAlignment(Qt::AlignHCenter);
+    setAlignment(Qt::AlignBottom);
     setPixmap(*mPixmapColor);
 }
 
