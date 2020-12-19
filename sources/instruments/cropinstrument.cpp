@@ -36,8 +36,8 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QClipboard>
 
 CropInstrument::CropInstrument(QObject *parent) :
-    AbstractSelection(parent)
-{
+    AbstractSelection(parent){
+    this->installEventFilter(this);
 }
 
 void CropInstrument::copyImage(ImageArea &imageArea)
@@ -223,4 +223,16 @@ void CropInstrument::paint(ImageArea &imageArea, bool, bool)
 
 void CropInstrument::showMenu(ImageArea &)
 {
+
+}
+
+bool CropInstrument::eventFilter(QObject *obj, QEvent *ev)
+{
+    (void)obj;
+    QKeyEvent *keyEvent = static_cast<QKeyEvent*>(ev);
+    if (keyEvent->key() == Qt::Key_Enter){
+        //crop here
+        return true;
+    }
+    return false;
 }

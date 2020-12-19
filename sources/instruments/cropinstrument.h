@@ -85,6 +85,9 @@ private:
     QImage mSelectedImage, /**< Copy of selected image. */
            mPasteImage; /**< Image to paste */
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev);
+
 signals:
     void sendEnableCopyCutActions(bool enable);
     void sendEnableSelectionInstrument(bool enable);
