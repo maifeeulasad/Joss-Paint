@@ -81,12 +81,10 @@ private:
     void clear();
     void paint(ImageArea &imageArea, bool = false, bool = false);
     void showMenu(ImageArea &);
+    void showCropConfirmation(ImageArea &imageArea);
 
     QImage mSelectedImage, /**< Copy of selected image. */
            mPasteImage; /**< Image to paste */
-
-protected:
-    bool eventFilter(QObject *obj, QEvent *ev);
 
 signals:
     void sendEnableCopyCutActions(bool enable);

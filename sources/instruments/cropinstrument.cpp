@@ -34,99 +34,36 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #include <QPainter>
 #include <QApplication>
 #include <QClipboard>
+#include <QMessageBox>
+#include <QLabel>
 
 CropInstrument::CropInstrument(QObject *parent) :
     AbstractSelection(parent){
     this->installEventFilter(this);
 }
 
-void CropInstrument::copyImage(ImageArea &imageArea)
-{
-    if (mIsSelectionExists)
-    {
-        imageArea.setImage(mImageCopy);
-        QClipboard *globalClipboard = QApplication::clipboard();
-        QImage copyImage;
-        if(mIsImageSelected)
-        {
-            copyImage = mSelectedImage;
-        }
-        else
-        {
-            copyImage = imageArea.getImage()->copy(mTopLeftPoint.x(), mTopLeftPoint.y(), mWidth, mHeight);
-        }
-        globalClipboard->setImage(copyImage, QClipboard::Clipboard);
-    }
+void CropInstrument::copyImage(ImageArea &imageArea){
+    (void)imageArea;
 }
 
-void CropInstrument::cutImage(ImageArea &imageArea)
-{
-    if (mIsSelectionExists)
-    {
-        copyImage(imageArea);
-        if(mIsSelectionExists)
-        {
-            imageArea.setImage(mImageCopy);
-            paint(imageArea);
-        }
-        makeUndoCommand(imageArea);
-        if (/*mSelectedImage != mPasteImage || !*/mIsImageSelected)
-        {
-            imageArea.setImage(mImageCopy);
-        }
-        else
-        {
-            clearSelectionBackground(imageArea);
-        }
-        mTopLeftPoint = QPoint(0, 0);
-        mBottomRightPoint = QPoint(0, 0);
-        mImageCopy = *imageArea.getImage();
-        imageArea.update();
-        mIsSelectionExists = false;
-        imageArea.restoreCursor();
-        emit sendEnableCopyCutActions(false);
-    }
+void CropInstrument::cutImage(ImageArea &imageArea){
+    (void)imageArea;
 }
 
-void CropInstrument::pasteImage(ImageArea &imageArea)
-{
-    QClipboard *globalClipboard = QApplication::clipboard();
-    if(mIsSelectionExists)
-    {
-        imageArea.setImage(mImageCopy);
-        paint(imageArea);
-        mImageCopy = *imageArea.getImage();
-    }
-    makeUndoCommand(imageArea);
-    mPasteImage = globalClipboard->image();
-    if (!mPasteImage.isNull())
-    {
-        mSelectedImage = mPasteImage;
-        mImageCopy = *imageArea.getImage();
-        mTopLeftPoint = QPoint(0, 0);
-        mBottomRightPoint = QPoint(mPasteImage.width(), mPasteImage.height()) - QPoint(1, 1);
-        mHeight = mPasteImage.height();
-        mWidth = mPasteImage.width();
-        mIsImageSelected = mIsSelectionExists = true;
-        paint(imageArea);
-        drawBorder(imageArea);
-        imageArea.restoreCursor();
-        emit sendEnableCopyCutActions(true);
-    }
+void CropInstrument::pasteImage(ImageArea &imageArea){
+    (void)imageArea;
 }
 
-void CropInstrument::startAdjusting(ImageArea &imageArea)
-{
+void CropInstrument::startAdjusting(ImageArea &imageArea){
     mImageCopy = *imageArea.getImage();
     mIsImageSelected = false;
 }
 
-void CropInstrument::startSelection(ImageArea &)
-{
+void CropInstrument::startSelection(ImageArea &){
+
 }
 
-void CropInstrument::startResizing(ImageArea &imageArea)
-{
+void CropInstrument::startResizing(ImageArea &imageArea){
     if (!mIsImageSelected)
     {
         clearSelectionBackground(imageArea);
@@ -137,8 +74,7 @@ void CropInstrument::startResizing(ImageArea &imageArea)
     }
 }
 
-void CropInstrument::startMoving(ImageArea &imageArea)
-{
+void CropInstrument::startMoving(ImageArea &imageArea){
     clearSelectionBackground(imageArea);
     if (mIsSelectionAdjusting)
     {
@@ -146,93 +82,86 @@ void CropInstrument::startMoving(ImageArea &imageArea)
     }
 }
 
-void CropInstrument::select(ImageArea &)
-{
+void CropInstrument::select(ImageArea &){
+
 }
 
-void CropInstrument::resize(ImageArea &)
-{
+void CropInstrument::resize(ImageArea &){
+
 }
 
-void CropInstrument::move(ImageArea &)
-{
+void CropInstrument::move(ImageArea &){
+
 }
 
-void CropInstrument::completeSelection(ImageArea &imageArea)
-{
+void CropInstrument::completeSelection(ImageArea &imageArea){
     mSelectedImage = imageArea.getImage()->copy(mTopLeftPoint.x(),
                                                 mTopLeftPoint.y(),
                                                 mWidth, mHeight);
+    showCropConfirmation(imageArea);
     emit sendEnableCopyCutActions(true);
 }
 
-void CropInstrument::completeResizing(ImageArea &imageArea)
-{
+void CropInstrument::completeResizing(ImageArea &imageArea){
     mSelectedImage = imageArea.getImage()->copy(mTopLeftPoint.x(),
                                                 mTopLeftPoint.y(),
                                                 mWidth, mHeight);
+    showCropConfirmation(imageArea);
 }
 
-void CropInstrument::completeMoving(ImageArea &imageArea)
-{
+void CropInstrument::completeMoving(ImageArea &imageArea){
     if (mIsSelectionAdjusting)
     {
         mSelectedImage = imageArea.getImage()->copy(mTopLeftPoint.x(),
                                                    mTopLeftPoint.y(),
                                                    mWidth, mHeight);
     }
-
+    showCropConfirmation(imageArea);
 }
 
-void CropInstrument::clearSelectionBackground(ImageArea &imageArea)
-{
-    if (!mIsSelectionAdjusting)
-    {
-        QPainter blankPainter(imageArea.getImage());
-        blankPainter.setPen(Qt::white);
-        blankPainter.setBrush(QBrush(Qt::white));
-        blankPainter.setBackgroundMode(Qt::OpaqueMode);
-        blankPainter.drawRect(QRect(mTopLeftPoint, mBottomRightPoint - QPoint(1, 1)));
-        blankPainter.end();
-        mImageCopy = *imageArea.getImage();
-    }
+void CropInstrument::clearSelectionBackground(ImageArea &imageArea){
+   (void) imageArea;
 }
 
-void CropInstrument::clear()
-{
+void CropInstrument::clear(){
     mSelectedImage = QImage();
     emit sendEnableCopyCutActions(false);
 }
 
-void CropInstrument::paint(ImageArea &imageArea, bool, bool)
-{
+void CropInstrument::paint(ImageArea &imageArea, bool, bool){
     if (mIsSelectionExists && !mIsSelectionAdjusting)
     {
-        if(mTopLeftPoint != mBottomRightPoint)
-        {
-            QPainter painter(imageArea.getImage());
-            QRect source(0, 0, mSelectedImage.width(), mSelectedImage.height());
-            QRect target(mTopLeftPoint, mBottomRightPoint);
-            painter.drawImage(target, mSelectedImage, source);
-            painter.end();
-        }
         imageArea.setEdited(true);
         imageArea.update();
     }
 }
 
-void CropInstrument::showMenu(ImageArea &)
-{
+void CropInstrument::showMenu(ImageArea &){
 
 }
 
-bool CropInstrument::eventFilter(QObject *obj, QEvent *ev)
-{
-    (void)obj;
-    QKeyEvent *keyEvent = static_cast<QKeyEvent*>(ev);
-    if (keyEvent->key() == Qt::Key_Enter){
-        //crop here
-        return true;
+void CropInstrument::showCropConfirmation(ImageArea &imageArea){
+    int message = QMessageBox::question(
+                qobject_cast<QWidget *> (parent()),
+                tr("Crop confirmation"),
+                tr("Crop this area ?"),
+
+                QMessageBox::Yes |
+                QMessageBox::No |
+                QMessageBox::Cancel,
+
+                QMessageBox::Cancel );
+    if(message == QMessageBox::Yes){
+        mSelectedImage = imageArea.getImage()->copy(mTopLeftPoint.x(), mTopLeftPoint.y(), mWidth, mHeight);
+        imageArea.setImage(mSelectedImage);
+        imageArea.update();
+        return;
     }
-    return false;
+    if(message == QMessageBox::No){
+        return;
+    }
+    if(message == QMessageBox::Cancel){
+        clear();
+        return;
+    }
 }
