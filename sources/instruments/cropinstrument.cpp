@@ -54,6 +54,16 @@ void CropInstrument::pasteImage(ImageArea &imageArea){
     (void)imageArea;
 }
 
+void CropInstrument::cropImage(ImageArea &imageArea){
+    QImage cropArea = imageArea.getImage()->copy(mTopLeftPoint.x(), mTopLeftPoint.y(), mWidth, mHeight);
+    makeUndoCommand(imageArea);
+    imageArea.setImage(cropArea);
+    imageArea.update();
+    mIsSelectionExists = false;
+    imageArea.restoreCursor();
+    emit sendEnableCopyCutActions(false);
+}
+
 void CropInstrument::startAdjusting(ImageArea &imageArea){
     mImageCopy = *imageArea.getImage();
     mIsImageSelected = false;
@@ -129,8 +139,14 @@ void CropInstrument::clear(){
 }
 
 void CropInstrument::paint(ImageArea &imageArea, bool, bool){
-    if (mIsSelectionExists && !mIsSelectionAdjusting)
-    {
+    if (mIsSelectionExists && !mIsSelectionAdjusting){
+        if(mTopLeftPoint != mBottomRightPoint){
+            QPainter painter(imageArea.getImage());
+            QRect source(0, 0, mSelectedImage.width(), mSelectedImage.height());
+            QRect target(mTopLeftPoint, mBottomRightPoint);
+            painter.drawImage(target, mSelectedImage, source);
+            painter.end();
+        }
         imageArea.setEdited(true);
         imageArea.update();
     }
@@ -152,9 +168,8 @@ void CropInstrument::showCropConfirmation(ImageArea &imageArea){
 
                 QMessageBox::Cancel );
     if(message == QMessageBox::Yes){
-        mSelectedImage = imageArea.getImage()->copy(mTopLeftPoint.x(), mTopLeftPoint.y(), mWidth, mHeight);
-        imageArea.setImage(mSelectedImage);
-        imageArea.update();
+        cropImage(imageArea);
+        imageArea.sendSetInstrument(PEN);
         return;
     }
     if(message == QMessageBox::No){

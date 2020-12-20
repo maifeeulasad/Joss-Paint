@@ -30,6 +30,7 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #define CROPINSTRUMENT_H
 
 #include "abstractselection.h"
+#include "josspaintenums.h"
 
 QT_BEGIN_NAMESPACE
 class QUndoStack;
@@ -66,6 +67,7 @@ public:
      * @param imageArea ImageArea for applying changes.
      */
     void cutImage(ImageArea &imageArea);
+    void cropImage(ImageArea &imageArea);
 
 private:
     void startAdjusting(ImageArea &imageArea);

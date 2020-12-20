@@ -382,7 +382,7 @@ void ImageArea::cutImage()
 
 void ImageArea::cropImage()
 {
-    SelectionInstrument *instrument = static_cast <SelectionInstrument*> (mInstrumentsHandlers.at(CURSOR));
+    CropInstrument *instrument = static_cast <CropInstrument*> (mInstrumentsHandlers.at(CURSOR));
     instrument->cropImage(*this);
 }
 void ImageArea::mousePressEvent(QMouseEvent *event)

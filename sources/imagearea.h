@@ -102,8 +102,9 @@ public:
     inline QString getFileName() { return (mFilePath.isEmpty() ? mFilePath :
                                            mFilePath.split('/').last()); }
     inline QImage* getImage() { return mImage; }
-    inline QImage getOriginalImage() { return mOriginalImage; }
     inline void setImage(const QImage &image) { *mImage = image; }
+    inline QImage getOriginalImage() { return mOriginalImage; }
+    inline void setOriginalImage(const QImage &image) { mOriginalImage = image; }
     /**
      * @brief Set flag which shows that image edited.
      *
