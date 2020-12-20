@@ -39,5 +39,16 @@
         <file>media/logo/josspaint_64.png</file>
         <file>media/instruments-icons/curve.png</file>
         <file>media/actions-icons/clear-gray.png</file>
+
+
+        <file>QSS/Ubuntu.qss</file>
+        <file>QSS/AMOLED.qss</file>
+        <file>QSS/Aqua.qss</file>
+        <file>QSS/ConsoleStyle.qss</file>
+        <file>QSS/ElegantDark.qss</file>
+        <file>QSS/ConsoleStyle.qss</file>
+        <file>QSS/ManjaroMix.qss</file>
+        <file>QSS/MaterialDark.qss</file>
+        <file>QSS/NeonButtons.qss</file>
     </qresource>
 </RCC>
