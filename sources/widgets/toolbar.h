@@ -32,8 +32,10 @@ A copy of the License : https://github.com/maifeeulasad/Paint/blob/main/LICENSE
 #ifndef TOOLBAR_H
 #define TOOLBAR_H
 
+#include "palettebutton.h"
 #include "../josspaintenums.h"
-
+#include <QLabel>
+#include <QSlider>
 #include <QToolBar>
 
 QT_BEGIN_NAMESPACE
@@ -41,10 +43,6 @@ class QToolButton;
 class ColorChooser;
 QT_END_NAMESPACE
 
-/**
- * @brief Toolbar with instrumets buttons, color choosers and etc.
- *
- */
 class ToolBar : public QToolBar
 {
     Q_OBJECT
@@ -53,25 +51,17 @@ public:
     explicit ToolBar(const QMap<InstrumentsEnum, QAction*> &actMap, QWidget *parent = 0);
 
 private:
-    /**
-     * @brief Initialize all buttons, color choosers and etc.
-     *
-     */
     void initializeItems();
-    /**
-     * @brief Create new QToolButton
-     *
-     * @param name Name of button
-     * @param iconPath Path to button icon.
-     * @return QToolButton Created QToolButton.
-     */
-    QToolButton* createToolButton(QAction *act);
 
+    QToolButton* createToolButton(QAction *act);
     QToolButton *mCursorButton, *mEraserButton, *mPenButton, *mLineButton,
                 *mColorPickerButton,*mColorPickerPaletteButton, *mMagnifierButton,
                 *mSprayButton, *mFillButton,
                 *mRectangleButton, *mEllipseButton, *mCurveButton, *mTextButton, *mCropButton;
     ColorChooser *mPColorChooser, *mSColorChooser;
+    QSlider *mPenSize;
+    QLabel *textPenSize;
+
     bool mPrevInstrumentSetted;
     const QMap<InstrumentsEnum, QAction*> &mActMap;
     
@@ -84,7 +74,7 @@ public slots:
     void setSecondaryColorView();
     
 private slots:
-    void penValueChanged(const int &value);
+    void valuePenSize(const int &value);
     void primaryColorChanged(const QColor &color);
     void secondaryColorChanged(const QColor &color);
 
