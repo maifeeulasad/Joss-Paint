@@ -56,9 +56,16 @@ void printVersion()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName("Paint");
+    a.setApplicationName("Joss Paint");
     a.setApplicationVersion("0.1.1");
-    a.setStyle(QStyleFactory::create("Macintosh"));
+
+    QFile styleFile( ":/QSS/Ubuntu.qss" );
+    styleFile.open( QFile::ReadOnly );
+
+    QString style( styleFile.readAll() );
+    a.setStyleSheet( style );
+
+    //a.setStyle(QStyleFactory::create("Macintosh"));
 
     QStringList args = a.arguments();
 

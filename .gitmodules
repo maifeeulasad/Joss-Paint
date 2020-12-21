@@ -1,0 +1,3 @@
+[submodule "sources/QSS"]
+	path = sources/QSS
+	url = https://github.com/GTRONICK/QSS.git
