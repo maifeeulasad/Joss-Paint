@@ -343,7 +343,7 @@ void MainWindow::initializeMainMenu()
 
     QAction *mCropAction = new QAction(tr("Crop"), this);
     mCropAction->setCheckable(true);
-    mCropAction->setIcon(QIcon::fromTheme("tool-crop", QIcon(":/media/instruments-icons/crop.png")));
+    mCropAction->setIcon(QIcon::fromTheme("transform-crop", QIcon(":/media/instruments-icons/crop.png")));
     connect(mCropAction, &QAction::triggered, this, &MainWindow::instumentsAct);
     mInstrumentsMenu->addAction(mCropAction);
     mInstrumentsActMap.insert(CROP, mCropAction);
