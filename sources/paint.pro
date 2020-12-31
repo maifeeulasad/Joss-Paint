@@ -105,21 +105,21 @@ HEADERS  += mainwindow.h \
     widgets/gaussianblurfiltersettings.h
 
 TRANSLATIONS += \
-    translations/easypaint_cs_CZ.ts \
-    translations/easypaint_fr_FR.ts \
-    translations/easypaint_ru_RU.ts \
-    translations/easypaint_bn_BN.ts
+    translations/josspaint_cs_CZ.ts \
+    translations/josspaint_fr_FR.ts \
+    translations/josspaint_ru_RU.ts \
+    translations/josspaint_bn_BN.ts
 
 RESOURCES += \
     resources.qrc
 
 target.path = /usr/bin
-translations.path = /usr/share/easypaint/translations
+translations.path = /usr/share/josspaint/translations
 translations.files = translations/*.qm
 desktop.path = /usr/share/applications
-desktop.files = media/easypaint.desktop
+desktop.files = media/josspaint.desktop
 icon.path = /usr/share/pixmaps
-icon.files = media/logo/easypaint_64.png
+icon.files = media/logo/josspaint_64.png
 isEmpty(QMAKE_LRELEASE) {
  win32 {
   QMAKE_LRELEASE =   $$[QT_INSTALL_BINS]\\lrelease.exe
