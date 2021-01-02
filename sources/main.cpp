@@ -59,13 +59,11 @@ int main(int argc, char *argv[])
     a.setApplicationName("Joss Paint");
     a.setApplicationVersion("0.1.1");
 
-    QFile styleFile( ":/QSS/Ubuntu.qss" );
+    QFile styleFile( ":/QSS/MacOS.qss" );
     styleFile.open( QFile::ReadOnly );
 
     QString style( styleFile.readAll() );
     a.setStyleSheet( style );
-
-    //a.setStyle(QStyleFactory::create("Macintosh"));
 
     QStringList args = a.arguments();
 
