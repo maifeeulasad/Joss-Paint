@@ -47,6 +47,7 @@ SOURCES += main.cpp\
     instruments/selectioninstrument.cpp \
     instruments/curvelineinstrument.cpp \
     instruments/colorpickerpaletteinstrument.cpp \
+    instruments/cropinstrument.cpp \
     instruments/textinstrument.cpp \
     effects/abstracteffect.cpp \
     effects/negativeeffect.cpp \
@@ -88,6 +89,7 @@ HEADERS  += mainwindow.h \
     instruments/curvelineinstrument.h \
     instruments/textinstrument.h \
     instruments/colorpickerpaletteinstrument.h \
+    instruments/cropinstrument.h \
     effects/abstracteffect.h \
     effects/negativeeffect.h \
     effects/grayeffect.h \
